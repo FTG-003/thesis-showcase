@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -52,11 +52,11 @@ const Index = () => {
       </a>
       
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 glass border-b border-white/10 z-40">
+      <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b z-40">
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4 animate-fade-in-up">
-            <img src="/logo-full.png" alt="Pyragogy.org" className="h-10 w-auto hover:scale-110 transition-transform duration-300" />
-            <span className="text-lg font-semibold text-gradient">Pyragogy Research</span>
+          <div className="flex items-center gap-4">
+            <img src="/logo-full.png" alt="Pyragogy.org" className="h-10 w-auto" />
+            <span className="text-lg font-semibold">Pyragogy Research</span>
           </div>
           
           <button 
@@ -69,62 +69,61 @@ const Index = () => {
             <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
           </button>
           
-          <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto glass md:bg-transparent border-b md:border-0 gap-6 p-4 md:p-0`}>
-            <li><button onClick={() => scrollToSection('abstract')} className={`nav-link ${activeSection === 'abstract' ? 'text-primary font-medium' : 'text-muted-foreground hover:text-primary'} transition-all duration-300 hover:scale-105 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100`}>Abstract</button></li>
-            <li><button onClick={() => scrollToSection('key-points')} className={`nav-link ${activeSection === 'key-points' ? 'text-primary font-medium' : 'text-muted-foreground hover:text-primary'} transition-all duration-300 hover:scale-105 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100`}>Key Points</button></li>
-            <li><button onClick={() => scrollToSection('structure')} className={`nav-link ${activeSection === 'structure' ? 'text-primary font-medium' : 'text-muted-foreground hover:text-primary'} transition-all duration-300 hover:scale-105 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100`}>Structure</button></li>
-            <li><button onClick={() => scrollToSection('impact')} className={`nav-link ${activeSection === 'impact' ? 'text-primary font-medium' : 'text-muted-foreground hover:text-primary'} transition-all duration-300 hover:scale-105 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100`}>Impact</button></li>
-            <li><button onClick={() => scrollToSection('resources')} className={`nav-link ${activeSection === 'resources' ? 'text-primary font-medium' : 'text-muted-foreground hover:text-primary'} transition-all duration-300 hover:scale-105 relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100`}>Resources</button></li>
+          <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background md:bg-transparent border-b md:border-0 gap-6 p-4 md:p-0`}>
+            <li><button onClick={() => scrollToSection('abstract')} className={`nav-link ${activeSection === 'abstract' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Abstract</button></li>
+            <li><button onClick={() => scrollToSection('key-points')} className={`nav-link ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Key Points</button></li>
+            <li><button onClick={() => scrollToSection('structure')} className={`nav-link ${activeSection === 'structure' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Structure</button></li>
+            <li><button onClick={() => scrollToSection('impact')} className={`nav-link ${activeSection === 'impact' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Impact</button></li>
+            <li><button onClick={() => scrollToSection('resources')} className={`nav-link ${activeSection === 'resources' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Resources</button></li>
           </ul>
         </nav>
       </header>
 
       <main id="main" className="pt-20">
         {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden" style={{background: 'var(--gradient-hero)'}}>
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+        <section className="py-20 bg-gradient-to-br from-background to-muted/20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-black/[0.02] bg-[size:50px_50px]" />
           <div className="container mx-auto px-4 relative">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 animate-fade-in-up">
-                <div className="flex gap-2 animate-scale-in animate-stagger-1">
-                  <Badge variant="secondary" className="glass bg-white/20 text-white border-white/30 hover-glow">Preprint</Badge>
-                  <Badge variant="outline" className="glass bg-white/10 text-white border-white/30">2025</Badge>
+              <div className="space-y-6 animate-fade-in">
+                <div className="flex gap-2">
+                  <Badge variant="secondary" className="bg-primary/10 text-primary">Preprint</Badge>
+                  <Badge variant="outline">2025</Badge>
                 </div>
                 
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white text-shadow animate-fade-in-up animate-stagger-2">
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   Cognitive Intraspecific Selection in Education
                 </h1>
                 
-                <p className="text-xl text-white/90 leading-relaxed animate-fade-in-up animate-stagger-3">
+                <p className="text-xl text-muted-foreground leading-relaxed">
                   From Individualism to Collective Strength — A Revolutionary Framework for Educational Evolution
                 </p>
                 
-                <div className="space-y-2 animate-fade-in-up animate-stagger-4">
-                  <p className="text-lg font-semibold text-white">Fabrizio Terzi</p>
-                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener" className="text-sm text-white/70 hover:text-white transition-colors">
+                <div className="space-y-2">
+                  <p className="text-lg font-semibold">Fabrizio Terzi</p>
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                     ORCID: 0009-0004-7191-0455
                   </a>
                 </div>
                 
-                <div className="flex flex-wrap gap-4 animate-fade-in-up animate-stagger-5">
-                  <Button asChild size="lg" className="glass bg-white/20 text-white border-white/30 hover:bg-white/30 hover-lift backdrop-blur-sm">
+                <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
                     <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
                       📖 Download Thesis PDF
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass bg-white/10 text-white border-white/30 hover:bg-white/20 hover-lift">
+                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')}>
                     🔍 Read Abstract
                   </Button>
                 </div>
               </div>
               
-              <div className="flex justify-center animate-float">
-                <Card className="w-80 h-96 glass bg-white/10 text-white relative overflow-hidden hover-lift hover-glow animate-pulse-glow">
-                  <div className="absolute inset-0" style={{background: 'var(--gradient-glass)'}} />
+              <div className="flex justify-center">
+                <Card className="w-80 h-96 bg-gradient-to-br from-primary to-primary/70 text-primary-foreground relative overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
                   <CardContent className="h-full flex flex-col justify-between p-8 relative z-10">
                     <div>
-                      <h2 className="text-2xl font-bold mb-2 text-shadow">Cognitive Intraspecific Selection</h2>
+                      <h2 className="text-2xl font-bold mb-2">Cognitive Intraspecific Selection</h2>
                       <p className="text-lg opacity-90">in Education</p>
                     </div>
                     <div>
@@ -132,7 +131,7 @@ const Index = () => {
                       <p className="text-sm opacity-80">Pyragogy.org</p>
                     </div>
                   </CardContent>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-white/10 opacity-30 blur-xl" />
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent opacity-30 blur-xl" />
                 </Card>
               </div>
             </div>
@@ -140,17 +139,17 @@ const Index = () => {
         </section>
 
         {/* Abstract Section */}
-        <section id="abstract" className="py-20" style={{background: 'var(--gradient-card)'}}>
+        <section id="abstract" className="py-20 bg-card">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient animate-fade-in-up">Executive Summary</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Executive Summary</h2>
             
             <div className="max-w-4xl mx-auto space-y-6 text-lg leading-relaxed">
-              <p className="text-xl font-medium text-center mb-8 animate-fade-in-up animate-stagger-1">
+              <p className="text-xl font-medium text-center mb-8">
                 This thesis presents a groundbreaking transposition of biological intraspecific selection to educational contexts, 
                 reimagining how ideas compete, evolve, and strengthen collective intelligence.
               </p>
               
-              <p className="animate-fade-in-up animate-stagger-2">
+              <p>
                 By treating ideas as the fundamental unit of selection rather than individuals, we explore four critical 
                 isomorphisms: variation in educational approaches, selection through epistemic competition, 
                 heritability of successful pedagogical patterns, and adaptation to learning environments. 
@@ -158,7 +157,7 @@ const Index = () => {
                 Ritualization of Conflict, and non-agentive AI facilitation.
               </p>
               
-              <p className="animate-fade-in-up animate-stagger-3">
+              <p>
                 Through proposed Educational Quality Intelligence (EQI) metrics and the innovative IdeoEvo pilot project, 
                 this research offers practical pathways from traditional individualistic education toward 
                 collective cognitive strength. The implications extend beyond pedagogy to organizational learning, 
@@ -169,10 +168,9 @@ const Index = () => {
         </section>
 
         {/* Key Points Section */}
-        <section id="key-points" className="py-20 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/10 to-background" />
-          <div className="container mx-auto px-4 relative">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient animate-fade-in-up">Key Contributions</h2>
+        <section id="key-points" className="py-20">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Key Contributions</h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
@@ -202,10 +200,10 @@ const Index = () => {
                   description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness."
                 }
               ].map((point, index) => (
-                <Card key={index} className={`h-full glass hover-lift hover-glow animate-fade-in-up animate-stagger-${index + 1}`}>
+                <Card key={index} className="h-full hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
-                    <div className="text-4xl mb-4 animate-float" style={{animationDelay: `${index * 0.5}s`}}>{point.icon}</div>
-                    <CardTitle className="text-xl text-gradient">{point.title}</CardTitle>
+                    <div className="text-4xl mb-4">{point.icon}</div>
+                    <CardTitle className="text-xl">{point.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-base leading-relaxed">
