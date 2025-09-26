@@ -2,39 +2,35 @@ import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '-80px 0px -50% 0px'
     };
-
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
         }
       });
     }, observerOptions);
-
     const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
     }
   };
-
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -43,9 +39,7 @@ const Index = () => {
       console.error('Failed to copy text: ', err);
     }
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       {/* Skip to main content for accessibility */}
       <a href="#main" className="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">
         Skip to main content
@@ -59,11 +53,7 @@ const Index = () => {
             <span className="text-lg font-semibold">Pyragogy Research</span>
           </div>
           
-          <button 
-            className="md:hidden flex flex-col gap-1 p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
+          <button className="md:hidden flex flex-col gap-1 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle navigation menu">
             <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
             <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></span>
             <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
@@ -112,12 +102,7 @@ const Index = () => {
                 
                 <div className="space-y-3 p-6 glass rounded-2xl">
                   <p className="text-xl font-serif font-semibold">Fabrizio Terzi</p>
-                  <a 
-                    href="https://orcid.org/0009-0004-7191-0455" 
-                    target="_blank" 
-                    rel="noopener" 
-                    className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:underline decoration-primary/30"
-                  >
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener" className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:underline decoration-primary/30">
                     ORCID: 0009-0004-7191-0455 →
                   </a>
                 </div>
@@ -128,12 +113,7 @@ const Index = () => {
                       📖 Download Full Thesis
                     </a>
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    onClick={() => scrollToSection('abstract')}
-                    className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl"
-                  >
+                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl">
                     🔍 Explore Abstract
                   </Button>
                 </div>
@@ -145,9 +125,7 @@ const Index = () => {
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
                     <CardContent className="h-full flex flex-col justify-between p-10 relative z-10">
                       <div className="space-y-4">
-                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl backdrop-blur-sm">
-                          🧬
-                        </div>
+                        
                         <h2 className="text-3xl font-serif font-bold text-primary-foreground leading-tight">
                           Cognitive Intraspecific Selection
                         </h2>
@@ -260,43 +238,34 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {[
-                {
-                  icon: "🧬",
-                  title: "Theoretical Innovation",
-                  description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
-                  gradient: "from-primary to-primary-light"
-                },
-                {
-                  icon: "⚡",
-                  title: "Pyragogy Methodology",
-                  description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
-                  gradient: "from-accent to-accent-light"
-                },
-                {
-                  icon: "🤖",
-                  title: "AI Integration",
-                  description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
-                  gradient: "from-success to-primary"
-                },
-                {
-                  icon: "📊",
-                  title: "EQI Metrics",
-                  description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
-                  gradient: "from-warning to-accent"
-                },
-                {
-                  icon: "🎯",
-                  title: "Practical Implementation",
-                  description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
-                  gradient: "from-destructive to-primary"
-                }
-              ].map((point, index) => (
-                <Card 
-                  key={index} 
-                  className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
+              {[{
+              icon: "🧬",
+              title: "Theoretical Innovation",
+              description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
+              gradient: "from-primary to-primary-light"
+            }, {
+              icon: "⚡",
+              title: "Pyragogy Methodology",
+              description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
+              gradient: "from-accent to-accent-light"
+            }, {
+              icon: "🤖",
+              title: "AI Integration",
+              description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
+              gradient: "from-success to-primary"
+            }, {
+              icon: "📊",
+              title: "EQI Metrics",
+              description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
+              gradient: "from-warning to-accent"
+            }, {
+              icon: "🎯",
+              title: "Practical Implementation",
+              description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
+              gradient: "from-destructive to-primary"
+            }].map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
+              animationDelay: `${index * 100}ms`
+            }}>
                   <CardHeader className="pb-6">
                     <div className={`w-20 h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-3xl text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
                       {point.icon}
@@ -313,8 +282,7 @@ const Index = () => {
                   
                   {/* Hover effect overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -340,11 +308,7 @@ const Index = () => {
             <div className="max-w-6xl mx-auto">
               <Card className="glass overflow-hidden rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in border-0">
                 <div className="p-2">
-                  <iframe 
-                    src="/Cognitive_Intraspecific_Selection_EN.pdf" 
-                    className="w-full h-[700px] border-0 rounded-2xl"
-                    title="Cognitive Intraspecific Selection in Education - Full Thesis PDF"
-                  />
+                  <iframe src="/Cognitive_Intraspecific_Selection_EN.pdf" className="w-full h-[700px] border-0 rounded-2xl" title="Cognitive Intraspecific Selection in Education - Full Thesis PDF" />
                 </div>
               </Card>
               
@@ -377,55 +341,45 @@ const Index = () => {
             </div>
             
             <div className="max-w-5xl mx-auto space-y-8">
-              {[
-                {
-                  number: "01",
-                  title: "Introduction & Theoretical Foundation",
-                  description: "Establishes the biological basis of intraspecific selection and introduces the educational transposition framework.",
-                  keywords: ["evolutionary theory", "educational paradigms"],
-                  color: "from-primary to-primary-light"
-                },
-                {
-                  number: "02", 
-                  title: "Four Isomorphisms in Educational Evolution",
-                  description: "Deep dive into variation, selection, heritability, and adaptation mechanisms within educational contexts and idea competition.",
-                  keywords: ["variation", "selection", "adaptation"],
-                  color: "from-accent to-accent-light"
-                },
-                {
-                  number: "03",
-                  title: "Pyragogy: The Methodology", 
-                  description: "Comprehensive framework for Cognitive Reciprocation, Ritualization of Conflict, and AI-facilitated collective intelligence building.",
-                  keywords: ["cognitive reciprocation", "ritualized conflict"],
-                  color: "from-success to-primary"
-                },
-                {
-                  number: "04",
-                  title: "AI Integration & Non-Agentive Facilitation",
-                  description: "Explores how artificial intelligence can support human collective cognition without supplanting human agency in learning processes.",
-                  keywords: ["AI facilitation", "collective intelligence"],
-                  color: "from-warning to-accent"
-                },
-                {
-                  number: "05",
-                  title: "EQI Metrics & Assessment Framework",
-                  description: "Educational Quality Intelligence measurement system for evaluating collective cognitive development and learning effectiveness.", 
-                  keywords: ["EQI metrics", "assessment"],
-                  color: "from-destructive to-primary"
-                },
-                {
-                  number: "06",
-                  title: "IdeoEvo Pilot Project & Results",
-                  description: "Real-world implementation case study demonstrating practical applications and measurable outcomes of the cognitive intraspecific selection framework.",
-                  keywords: ["pilot study", "implementation"],
-                  color: "from-primary to-accent"
-                }
-              ].map((chapter, index) => (
-                <Card 
-                  key={index} 
-                  className="group glass hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-slide-in-right"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
+              {[{
+              number: "01",
+              title: "Introduction & Theoretical Foundation",
+              description: "Establishes the biological basis of intraspecific selection and introduces the educational transposition framework.",
+              keywords: ["evolutionary theory", "educational paradigms"],
+              color: "from-primary to-primary-light"
+            }, {
+              number: "02",
+              title: "Four Isomorphisms in Educational Evolution",
+              description: "Deep dive into variation, selection, heritability, and adaptation mechanisms within educational contexts and idea competition.",
+              keywords: ["variation", "selection", "adaptation"],
+              color: "from-accent to-accent-light"
+            }, {
+              number: "03",
+              title: "Pyragogy: The Methodology",
+              description: "Comprehensive framework for Cognitive Reciprocation, Ritualization of Conflict, and AI-facilitated collective intelligence building.",
+              keywords: ["cognitive reciprocation", "ritualized conflict"],
+              color: "from-success to-primary"
+            }, {
+              number: "04",
+              title: "AI Integration & Non-Agentive Facilitation",
+              description: "Explores how artificial intelligence can support human collective cognition without supplanting human agency in learning processes.",
+              keywords: ["AI facilitation", "collective intelligence"],
+              color: "from-warning to-accent"
+            }, {
+              number: "05",
+              title: "EQI Metrics & Assessment Framework",
+              description: "Educational Quality Intelligence measurement system for evaluating collective cognitive development and learning effectiveness.",
+              keywords: ["EQI metrics", "assessment"],
+              color: "from-destructive to-primary"
+            }, {
+              number: "06",
+              title: "IdeoEvo Pilot Project & Results",
+              description: "Real-world implementation case study demonstrating practical applications and measurable outcomes of the cognitive intraspecific selection framework.",
+              keywords: ["pilot study", "implementation"],
+              color: "from-primary to-accent"
+            }].map((chapter, index) => <Card key={index} className="group glass hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-slide-in-right" style={{
+              animationDelay: `${index * 150}ms`
+            }}>
                   <CardContent className="p-8">
                     <div className="flex gap-8 items-start">
                       <div className={`flex-shrink-0 w-20 h-20 bg-gradient-to-r ${chapter.color} rounded-3xl flex items-center justify-center font-bold text-2xl text-white shadow-strong group-hover:scale-110 transition-transform duration-300`}>
@@ -439,26 +393,17 @@ const Index = () => {
                           {chapter.description}
                         </p>
                         <div className="flex flex-wrap gap-3">
-                          {chapter.keywords.map((keyword, kidx) => (
-                            <Badge 
-                              key={kidx} 
-                              variant="secondary" 
-                              className="glass px-4 py-2 text-sm font-medium hover:bg-primary/10 transition-colors duration-300"
-                            >
+                          {chapter.keywords.map((keyword, kidx) => <Badge key={kidx} variant="secondary" className="glass px-4 py-2 text-sm font-medium hover:bg-primary/10 transition-colors duration-300">
                               {keyword}
-                            </Badge>
-                          ))}
+                            </Badge>)}
                         </div>
                       </div>
                     </div>
                   </CardContent>
                   
                   {/* Progress line */}
-                  {index < 5 && (
-                    <div className="absolute -bottom-4 left-1/2 w-px h-8 bg-gradient-to-b from-primary/50 to-transparent" />
-                  )}
-                </Card>
-              ))}
+                  {index < 5 && <div className="absolute -bottom-4 left-1/2 w-px h-8 bg-gradient-to-b from-primary/50 to-transparent" />}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -482,31 +427,24 @@ const Index = () => {
             </div>
             
             <div className="grid lg:grid-cols-3 gap-8 mb-20">
-              {[
-                {
-                  icon: "🎓",
-                  title: "Educational Innovation",
-                  description: "Provides a scientific foundation for moving beyond individualistic competition toward collective intelligence in educational institutions, potentially transforming how we approach curriculum design and learning assessment.",
-                  gradient: "from-primary to-primary-light"
-                },
-                {
-                  icon: "🏛️", 
-                  title: "Policy Implications",
-                  description: "Offers evidence-based frameworks for educational policy makers to design systems that harness cognitive competition for societal benefit, addressing challenges in public education and workforce development.",
-                  gradient: "from-accent to-accent-light"
-                },
-                {
-                  icon: "🚀",
-                  title: "Future of Learning", 
-                  description: "Establishes foundational principles for human-AI collaborative learning environments, preparing educational systems for the next generation of technology-enhanced collective intelligence.",
-                  gradient: "from-success to-warning"
-                }
-              ].map((impact, index) => (
-                <Card 
-                  key={index} 
-                  className="group glass text-center h-full hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-scale-in"
-                  style={{ animationDelay: `${index * 200}ms` }}
-                >
+              {[{
+              icon: "🎓",
+              title: "Educational Innovation",
+              description: "Provides a scientific foundation for moving beyond individualistic competition toward collective intelligence in educational institutions, potentially transforming how we approach curriculum design and learning assessment.",
+              gradient: "from-primary to-primary-light"
+            }, {
+              icon: "🏛️",
+              title: "Policy Implications",
+              description: "Offers evidence-based frameworks for educational policy makers to design systems that harness cognitive competition for societal benefit, addressing challenges in public education and workforce development.",
+              gradient: "from-accent to-accent-light"
+            }, {
+              icon: "🚀",
+              title: "Future of Learning",
+              description: "Establishes foundational principles for human-AI collaborative learning environments, preparing educational systems for the next generation of technology-enhanced collective intelligence.",
+              gradient: "from-success to-warning"
+            }].map((impact, index) => <Card key={index} className="group glass text-center h-full hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-scale-in" style={{
+              animationDelay: `${index * 200}ms`
+            }}>
                   <CardHeader className="pb-6">
                     <div className={`w-24 h-24 bg-gradient-to-r ${impact.gradient} rounded-3xl flex items-center justify-center text-4xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-strong`}>
                       {impact.icon}
@@ -520,8 +458,7 @@ const Index = () => {
                       {impact.description}
                     </CardDescription>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
 
             {/* Key Quotes */}
@@ -532,28 +469,21 @@ const Index = () => {
               </div>
               
               <div className="grid lg:grid-cols-1 gap-8">
-                {[
-                  {
-                    text: "The shift from individual competition to collective cognitive strength represents perhaps the most significant paradigm change in educational theory since Dewey.",
-                    source: "Chapter 1: Theoretical Foundation",
-                    icon: "💡"
-                  },
-                  {
-                    text: "Ideas, not individuals, are the true units of educational selection. This recognition transforms how we understand learning, teaching, and institutional development.",
-                    source: "Chapter 2: Educational Isomorphisms",
-                    icon: "🧬"
-                  },
-                  {
-                    text: "AI's role is not to replace human cognition but to facilitate the collective intelligence that emerges from structured cognitive conflict.",
-                    source: "Chapter 4: AI Integration",
-                    icon: "🤖"
-                  }
-                ].map((quote, index) => (
-                  <Card 
-                    key={index} 
-                    className="glass border-l-8 border-l-primary hover:shadow-glow transition-all duration-500 rounded-3xl animate-slide-in-right"
-                    style={{ animationDelay: `${index * 300}ms` }}
-                  >
+                {[{
+                text: "The shift from individual competition to collective cognitive strength represents perhaps the most significant paradigm change in educational theory since Dewey.",
+                source: "Chapter 1: Theoretical Foundation",
+                icon: "💡"
+              }, {
+                text: "Ideas, not individuals, are the true units of educational selection. This recognition transforms how we understand learning, teaching, and institutional development.",
+                source: "Chapter 2: Educational Isomorphisms",
+                icon: "🧬"
+              }, {
+                text: "AI's role is not to replace human cognition but to facilitate the collective intelligence that emerges from structured cognitive conflict.",
+                source: "Chapter 4: AI Integration",
+                icon: "🤖"
+              }].map((quote, index) => <Card key={index} className="glass border-l-8 border-l-primary hover:shadow-glow transition-all duration-500 rounded-3xl animate-slide-in-right" style={{
+                animationDelay: `${index * 300}ms`
+              }}>
                     <CardContent className="p-8">
                       <div className="flex gap-6 items-start">
                         <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center text-2xl text-white flex-shrink-0 shadow-medium">
@@ -569,8 +499,7 @@ const Index = () => {
                         </div>
                       </div>
                     </CardContent>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </div>
           </div>
@@ -591,12 +520,24 @@ const Index = () => {
             </div>
             
             <div className="grid lg:grid-cols-3 gap-8 mb-20">
-              {[
-                { icon: "🔗", title: "Official DOI", link: "https://doi.org/10.5281/zenodo.16961291", text: "https://doi.org/10.5281/zenodo.16961291" },
-                { icon: "📄", title: "Download Thesis", link: "/Cognitive_Intraspecific_Selection_EN.pdf", text: "Full PDF Document" },
-                { icon: "👤", title: "Author Profile", link: "https://orcid.org/0009-0004-7191-0455", text: "ORCID: 0009-0004-7191-0455" }
-              ].map((resource, index) => (
-                <Card key={index} className="group glass text-center hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-scale-in" style={{ animationDelay: `${index * 150}ms` }}>
+              {[{
+              icon: "🔗",
+              title: "Official DOI",
+              link: "https://doi.org/10.5281/zenodo.16961291",
+              text: "https://doi.org/10.5281/zenodo.16961291"
+            }, {
+              icon: "📄",
+              title: "Download Thesis",
+              link: "/Cognitive_Intraspecific_Selection_EN.pdf",
+              text: "Full PDF Document"
+            }, {
+              icon: "👤",
+              title: "Author Profile",
+              link: "https://orcid.org/0009-0004-7191-0455",
+              text: "ORCID: 0009-0004-7191-0455"
+            }].map((resource, index) => <Card key={index} className="group glass text-center hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-scale-in" style={{
+              animationDelay: `${index * 150}ms`
+            }}>
                   <CardHeader>
                     <div className="w-20 h-20 bg-gradient-primary rounded-3xl flex items-center justify-center text-3xl text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-strong">
                       {resource.icon}
@@ -610,8 +551,7 @@ const Index = () => {
                       {resource.text}
                     </a>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
             
             {/* Citation Formats */}
@@ -626,12 +566,7 @@ const Index = () => {
                   <CardContent>
                     <div className="bg-muted p-4 rounded-lg font-mono text-sm relative">
                       <p>Terzi, F. (2025). <em>Cognitive intraspecific selection in education: From individualism to collective strength</em> [Preprint]. Pyragogy.org. https://doi.org/10.5281/zenodo.16961291</p>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="absolute top-2 right-2"
-                        onClick={() => copyToClipboard("Terzi, F. (2025). Cognitive intraspecific selection in education: From individualism to collective strength [Preprint]. Pyragogy.org. https://doi.org/10.5281/zenodo.16961291")}
-                      >
+                      <Button size="sm" variant="outline" className="absolute top-2 right-2" onClick={() => copyToClipboard("Terzi, F. (2025). Cognitive intraspecific selection in education: From individualism to collective strength [Preprint]. Pyragogy.org. https://doi.org/10.5281/zenodo.16961291")}>
                         📋
                       </Button>
                     </div>
@@ -652,19 +587,14 @@ const Index = () => {
   doi={10.5281/zenodo.16961291},
   url={https://doi.org/10.5281/zenodo.16961291}
 }`}</pre>
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="absolute top-2 right-2"
-                        onClick={() => copyToClipboard(`@misc{terzi2025cognitive,
+                      <Button size="sm" variant="outline" className="absolute top-2 right-2" onClick={() => copyToClipboard(`@misc{terzi2025cognitive,
   title={Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength},
   author={Terzi, Fabrizio},
   year={2025},
   publisher={Pyragogy.org},
   doi={10.5281/zenodo.16961291},
   url={https://doi.org/10.5281/zenodo.16961291}
-}`)}
-                      >
+}`)}>
                         📋
                       </Button>
                     </div>
@@ -718,14 +648,12 @@ const Index = () => {
       </footer>
 
       {/* Back to top button */}
-      <Button
-        className="fixed bottom-8 right-8 rounded-full w-12 h-12 p-0 shadow-lg"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
+      <Button className="fixed bottom-8 right-8 rounded-full w-12 h-12 p-0 shadow-lg" onClick={() => window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })}>
         ↑
       </Button>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
