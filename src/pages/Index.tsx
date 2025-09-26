@@ -123,7 +123,7 @@ const Index = () => {
                 <div className="relative group">
                   <Card className="w-96 h-[500px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
-                    <CardContent className="h-full flex flex-col justify-between p-10 relative z-10">
+                    <CardContent className="h-full flex flex-col justify-between p-10 relative z-10 bg-indigo-900 rounded-3xl">
                       <div className="space-y-4">
                         
                         <h2 className="text-3xl font-serif font-bold text-primary-foreground leading-tight">
