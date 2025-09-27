@@ -11,18 +11,17 @@ import { Testimonials } from "@/components/ui/testimonials";
 import { Timeline } from "@/components/ui/timeline";
 import { Share2, Download, ExternalLink, Search, BookOpen, Users } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '-80px 0px -50% 0px'
     };
-
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -30,13 +29,10 @@ const Index = () => {
         }
       });
     }, observerOptions);
-
     const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -47,21 +43,18 @@ const Index = () => {
       });
     }
   };
-
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
       toast({
         title: "Link Copied!",
-        description: "The research link has been copied to your clipboard.",
+        description: "The research link has been copied to your clipboard."
       });
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <ScrollProgress />
       
       {/* Skip to main content for accessibility */}
@@ -119,9 +112,7 @@ const Index = () => {
                   <span className="block text-4xl lg:text-5xl mt-2 text-foreground">in Education</span>
                 </h1>
                 
-                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light">
-                  From Individualism to Collective Strength — A Revolutionary Framework for Educational Evolution
-                </p>
+                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light">From Individualism to Collective Strength — A Framework for Educational Evolution</p>
                 
                 <div className="space-y-3 p-6 glass rounded-2xl">
                   <p className="text-xl font-serif font-semibold">Fabrizio Terzi</p>
@@ -284,39 +275,34 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {[
-                {
-                  icon: "🧬",
-                  title: "Theoretical Innovation",
-                  description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
-                  gradient: "from-primary to-primary-light"
-                },
-                {
-                  icon: "⚡",
-                  title: "Pyragogy Methodology",
-                  description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
-                  gradient: "from-accent to-accent-light"
-                },
-                {
-                  icon: "🤖",
-                  title: "AI Integration",
-                  description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
-                  gradient: "from-success to-primary"
-                },
-                {
-                  icon: "📊",
-                  title: "EQI Metrics",
-                  description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
-                  gradient: "from-warning to-accent"
-                },
-                {
-                  icon: "🎯",
-                  title: "Practical Implementation",
-                  description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
-                  gradient: "from-destructive to-primary"
-                }
-              ].map((point, index) => (
-                <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{ animationDelay: `${index * 100}ms` }}>
+              {[{
+              icon: "🧬",
+              title: "Theoretical Innovation",
+              description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
+              gradient: "from-primary to-primary-light"
+            }, {
+              icon: "⚡",
+              title: "Pyragogy Methodology",
+              description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
+              gradient: "from-accent to-accent-light"
+            }, {
+              icon: "🤖",
+              title: "AI Integration",
+              description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
+              gradient: "from-success to-primary"
+            }, {
+              icon: "📊",
+              title: "EQI Metrics",
+              description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
+              gradient: "from-warning to-accent"
+            }, {
+              icon: "🎯",
+              title: "Practical Implementation",
+              description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
+              gradient: "from-destructive to-primary"
+            }].map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
+              animationDelay: `${index * 100}ms`
+            }}>
                   <CardHeader className="pb-6">
                     <div className={`w-20 h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-3xl text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
                       {point.icon}
@@ -333,8 +319,7 @@ const Index = () => {
                   
                   {/* Hover effect overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -471,8 +456,6 @@ const Index = () => {
           </div>
         </footer>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
