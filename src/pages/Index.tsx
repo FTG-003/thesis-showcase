@@ -2,14 +2,27 @@ import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { NewsletterSignup } from "@/components/ui/newsletter-signup";
+import { CitationGenerator } from "@/components/ui/citation-generator";
+import { ParallaxSection } from "@/components/ui/parallax-section";
+import { Testimonials } from "@/components/ui/testimonials";
+import { Timeline } from "@/components/ui/timeline";
+import { Share2, Download, ExternalLink, Search, BookOpen, Users } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { toast } = useToast();
+
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '-80px 0px -50% 0px'
     };
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -17,10 +30,13 @@ const Index = () => {
         }
       });
     }, observerOptions);
+
     const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => observer.observe(section));
+
     return () => observer.disconnect();
   }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -31,15 +47,23 @@ const Index = () => {
       });
     }
   };
+
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      // You could add a toast notification here
+      toast({
+        title: "Link Copied!",
+        description: "The research link has been copied to your clipboard.",
+      });
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
   };
-  return <div className="min-h-screen bg-background">
+
+  return (
+    <div className="min-h-screen bg-background">
+      <ScrollProgress />
+      
       {/* Skip to main content for accessibility */}
       <a href="#main" className="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">
         Skip to main content
@@ -59,13 +83,16 @@ const Index = () => {
             <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
           </button>
           
-          <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background md:bg-transparent border-b md:border-0 gap-6 p-4 md:p-0`}>
-            <li><button onClick={() => scrollToSection('abstract')} className={`nav-link ${activeSection === 'abstract' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Abstract</button></li>
-            <li><button onClick={() => scrollToSection('key-points')} className={`nav-link ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Key Points</button></li>
-            <li><button onClick={() => scrollToSection('structure')} className={`nav-link ${activeSection === 'structure' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Structure</button></li>
-            <li><button onClick={() => scrollToSection('impact')} className={`nav-link ${activeSection === 'impact' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Impact</button></li>
-            <li><button onClick={() => scrollToSection('resources')} className={`nav-link ${activeSection === 'resources' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Resources</button></li>
-          </ul>
+          <div className="flex items-center gap-4">
+            <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background md:bg-transparent border-b md:border-0 gap-6 p-4 md:p-0`}>
+              <li><button onClick={() => scrollToSection('abstract')} className={`nav-link ${activeSection === 'abstract' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Abstract</button></li>
+              <li><button onClick={() => scrollToSection('key-points')} className={`nav-link ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Key Points</button></li>
+              <li><button onClick={() => scrollToSection('timeline')} className={`nav-link ${activeSection === 'timeline' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Timeline</button></li>
+              <li><button onClick={() => scrollToSection('testimonials')} className={`nav-link ${activeSection === 'testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Reviews</button></li>
+              <li><button onClick={() => scrollToSection('resources')} className={`nav-link ${activeSection === 'resources' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Resources</button></li>
+            </ul>
+            <ThemeToggle />
+          </div>
         </nav>
       </header>
 
@@ -73,11 +100,11 @@ const Index = () => {
         {/* Hero Section */}
         <section className="relative py-32 overflow-hidden bg-gradient-hero">
           {/* Animated background elements */}
-          <div className="absolute inset-0 mx-0">
+          <ParallaxSection speed={0.3} className="absolute inset-0 mx-0">
             <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float" />
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float delay-1000" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-primary opacity-5 rounded-full blur-3xl" />
-          </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-primary opacity-5 rounded-full blur-3xl animate-parallax" />
+          </ParallaxSection>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -104,13 +131,19 @@ const Index = () => {
                 </div>
                 
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300 px-8 py-6 text-lg rounded-2xl">
+                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300 px-8 py-6 text-lg rounded-2xl group">
                     <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
-                      📖 Download Full Thesis
+                      <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                      Download Full Thesis
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl">
-                    🔍 Explore Abstract
+                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl group">
+                    <Search className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                    Explore Abstract
+                  </Button>
+                  <Button variant="outline" size="lg" onClick={() => copyToClipboard(window.location.href)} className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl group">
+                    <Share2 className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                    Share Research
                   </Button>
                 </div>
               </div>
@@ -219,6 +252,23 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Timeline Section */}
+        <section id="timeline" className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-background to-muted/20" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-20 animate-fade-in-up">
+              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Research Journey
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                The evolution of revolutionary educational theory from concept to implementation
+              </p>
+              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
+            </div>
+            <Timeline />
+          </div>
+        </section>
+
         {/* Key Points Section */}
         <section id="key-points" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
@@ -234,34 +284,39 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {[{
-              icon: "🧬",
-              title: "Theoretical Innovation",
-              description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
-              gradient: "from-primary to-primary-light"
-            }, {
-              icon: "⚡",
-              title: "Pyragogy Methodology",
-              description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
-              gradient: "from-accent to-accent-light"
-            }, {
-              icon: "🤖",
-              title: "AI Integration",
-              description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
-              gradient: "from-success to-primary"
-            }, {
-              icon: "📊",
-              title: "EQI Metrics",
-              description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
-              gradient: "from-warning to-accent"
-            }, {
-              icon: "🎯",
-              title: "Practical Implementation",
-              description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
-              gradient: "from-destructive to-primary"
-            }].map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
-              animationDelay: `${index * 100}ms`
-            }}>
+              {[
+                {
+                  icon: "🧬",
+                  title: "Theoretical Innovation",
+                  description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
+                  gradient: "from-primary to-primary-light"
+                },
+                {
+                  icon: "⚡",
+                  title: "Pyragogy Methodology",
+                  description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
+                  gradient: "from-accent to-accent-light"
+                },
+                {
+                  icon: "🤖",
+                  title: "AI Integration",
+                  description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
+                  gradient: "from-success to-primary"
+                },
+                {
+                  icon: "📊",
+                  title: "EQI Metrics",
+                  description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
+                  gradient: "from-warning to-accent"
+                },
+                {
+                  icon: "🎯",
+                  title: "Practical Implementation",
+                  description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
+                  gradient: "from-destructive to-primary"
+                }
+              ].map((point, index) => (
+                <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{ animationDelay: `${index * 100}ms` }}>
                   <CardHeader className="pb-6">
                     <div className={`w-20 h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-3xl text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
                       {point.icon}
@@ -278,378 +333,146 @@ const Index = () => {
                   
                   {/* Hover effect overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
-                </Card>)}
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* PDF Viewer Section */}
-        <section className="py-32 relative overflow-hidden bg-gradient-card">
-          <div className="absolute inset-0">
-            <div className="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float" />
-            <div className="absolute bottom-10 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float delay-1000" />
-          </div>
+        {/* Testimonials Section */}
+        <section id="testimonials" className="py-32 relative overflow-hidden bg-gradient-card">
+          <ParallaxSection speed={0.2} className="absolute inset-0">
+            <div className="absolute top-10 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" />
+            <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float delay-1000" />
+          </ParallaxSection>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-16 animate-fade-in-up">
+            <div className="text-center mb-20 animate-fade-in-up">
               <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Read the Full Thesis
+                Academic Recognition
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Immerse yourself in the complete research - revolutionary ideas await your exploration
+                Insights from leading researchers and educators worldwide
+              </p>
+              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
+            </div>
+            <Testimonials />
+          </div>
+        </section>
+
+        {/* Resources & Tools Section */}
+        <section id="resources" className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-20 animate-fade-in-up">
+              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Research Resources
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Tools and resources to support your academic work and research
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
             </div>
             
-            <div className="max-w-6xl mx-auto">
-              <Card className="glass overflow-hidden rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in border-0">
-                <div className="p-2">
-                  <iframe src="/Cognitive_Intraspecific_Selection_EN.pdf" className="w-full h-[700px] border-0 rounded-2xl" title="Cognitive Intraspecific Selection in Education - Full Thesis PDF" />
+            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20">
+              <CitationGenerator />
+              <NewsletterSignup />
+            </div>
+            
+            {/* Additional Resources */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
+                <div className="w-16 h-16 bg-gradient-primary rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-8 h-8 text-white" />
                 </div>
+                <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-primary transition-colors">
+                  Full Thesis
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Complete 120-page academic thesis with comprehensive analysis and practical applications.
+                </p>
+                <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
+                  <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
+                    <Download className="w-4 h-4 mr-2" />
+                    Download PDF
+                  </a>
+                </Button>
               </Card>
               
-              <div className="text-center mt-8">
-                <p className="text-lg text-muted-foreground mb-4">
-                  Unable to view the PDF? 
+              <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
+                <div className="w-16 h-16 bg-gradient-accent rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-accent transition-colors">
+                  Research Community
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Join the growing community of researchers exploring cognitive selection in education.
                 </p>
-                <Button asChild variant="outline" size="lg" className="glass hover:bg-primary/5 px-8 py-4 rounded-2xl">
+                <Button variant="outline" className="w-full glass hover:bg-accent/5 transition-all duration-300">
+                  <Users className="w-4 h-4 mr-2" />
+                  Join Community
+                </Button>
+              </Card>
+              
+              <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
+                <div className="w-16 h-16 bg-gradient-to-r from-success to-warning rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <ExternalLink className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-foreground transition-colors">
+                  ORCID Profile
+                </h3>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Access the author's complete academic profile and additional research publications.
+                </p>
+                <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300">
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    View Profile
+                  </a>
+                </Button>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact & Footer */}
+        <footer className="py-20 bg-gradient-to-br from-muted/10 to-background border-t">
+          <div className="container mx-auto px-4">
+            <div className="text-center space-y-8">
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <img src="/logo-full.png" alt="Pyragogy.org" className="h-12 w-auto" />
+                <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
+              </div>
+              
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Advancing educational theory through revolutionary research in cognitive selection and collective intelligence building.
+              </p>
+              
+              <div className="flex justify-center gap-6">
+                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    ORCID Profile
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="glass hover:bg-primary/5">
                   <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
-                    📥 Download Full Thesis PDF
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Thesis
                   </a>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Structure Section */}
-        <section id="structure" className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-background to-muted/20" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Thesis Structure
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                A comprehensive journey through revolutionary educational frameworks and cognitive evolution
-              </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
-            </div>
-            
-            <div className="max-w-5xl mx-auto space-y-8">
-              {[{
-              number: "01",
-              title: "Introduction & Theoretical Foundation",
-              description: "Establishes the biological basis of intraspecific selection and introduces the educational transposition framework.",
-              keywords: ["evolutionary theory", "educational paradigms"],
-              color: "from-primary to-primary-light"
-            }, {
-              number: "02",
-              title: "Four Isomorphisms in Educational Evolution",
-              description: "Deep dive into variation, selection, heritability, and adaptation mechanisms within educational contexts and idea competition.",
-              keywords: ["variation", "selection", "adaptation"],
-              color: "from-accent to-accent-light"
-            }, {
-              number: "03",
-              title: "Pyragogy: The Methodology",
-              description: "Comprehensive framework for Cognitive Reciprocation, Ritualization of Conflict, and AI-facilitated collective intelligence building.",
-              keywords: ["cognitive reciprocation", "ritualized conflict"],
-              color: "from-success to-primary"
-            }, {
-              number: "04",
-              title: "AI Integration & Non-Agentive Facilitation",
-              description: "Explores how artificial intelligence can support human collective cognition without supplanting human agency in learning processes.",
-              keywords: ["AI facilitation", "collective intelligence"],
-              color: "from-warning to-accent"
-            }, {
-              number: "05",
-              title: "EQI Metrics & Assessment Framework",
-              description: "Educational Quality Intelligence measurement system for evaluating collective cognitive development and learning effectiveness.",
-              keywords: ["EQI metrics", "assessment"],
-              color: "from-destructive to-primary"
-            }, {
-              number: "06",
-              title: "IdeoEvo Pilot Project & Results",
-              description: "Real-world implementation case study demonstrating practical applications and measurable outcomes of the cognitive intraspecific selection framework.",
-              keywords: ["pilot study", "implementation"],
-              color: "from-primary to-accent"
-            }].map((chapter, index) => <Card key={index} className="group glass hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-slide-in-right" style={{
-              animationDelay: `${index * 150}ms`
-            }}>
-                  <CardContent className="p-8">
-                    <div className="flex gap-8 items-start">
-                      <div className={`flex-shrink-0 w-20 h-20 bg-gradient-to-r ${chapter.color} rounded-3xl flex items-center justify-center font-bold text-2xl text-white shadow-strong group-hover:scale-110 transition-transform duration-300`}>
-                        {chapter.number}
-                      </div>
-                      <div className="flex-1 space-y-4">
-                        <h3 className="text-2xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
-                          {chapter.title}
-                        </h3>
-                        <p className="text-lg text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                          {chapter.description}
-                        </p>
-                        <div className="flex flex-wrap gap-3">
-                          {chapter.keywords.map((keyword, kidx) => <Badge key={kidx} variant="secondary" className="glass px-4 py-2 text-sm font-medium hover:bg-primary/10 transition-colors duration-300">
-                              {keyword}
-                            </Badge>)}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                  
-                  {/* Progress line */}
-                  {index < 5 && <div className="absolute -bottom-4 left-1/2 w-px h-8 bg-gradient-to-b from-primary/50 to-transparent" />}
-                </Card>)}
-            </div>
-          </div>
-        </section>
-
-        {/* Impact Section */}
-        <section id="impact" className="py-32 relative overflow-hidden bg-gradient-card">
-          <div className="absolute inset-0">
-            <div className="absolute top-20 left-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-float" />
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float delay-1000" />
-          </div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Why This Research Matters
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Revolutionary implications for education, policy, and the future of human-AI collaboration
-              </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
-            </div>
-            
-            <div className="grid lg:grid-cols-3 gap-8 mb-20">
-              {[{
-              icon: "🎓",
-              title: "Educational Innovation",
-              description: "Provides a scientific foundation for moving beyond individualistic competition toward collective intelligence in educational institutions, potentially transforming how we approach curriculum design and learning assessment.",
-              gradient: "from-primary to-primary-light"
-            }, {
-              icon: "🏛️",
-              title: "Policy Implications",
-              description: "Offers evidence-based frameworks for educational policy makers to design systems that harness cognitive competition for societal benefit, addressing challenges in public education and workforce development.",
-              gradient: "from-accent to-accent-light"
-            }, {
-              icon: "🚀",
-              title: "Future of Learning",
-              description: "Establishes foundational principles for human-AI collaborative learning environments, preparing educational systems for the next generation of technology-enhanced collective intelligence.",
-              gradient: "from-success to-warning"
-            }].map((impact, index) => <Card key={index} className="group glass text-center h-full hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-scale-in" style={{
-              animationDelay: `${index * 200}ms`
-            }}>
-                  <CardHeader className="pb-6">
-                    <div className={`w-24 h-24 bg-gradient-to-r ${impact.gradient} rounded-3xl flex items-center justify-center text-4xl text-white mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-strong`}>
-                      {impact.icon}
-                    </div>
-                    <CardTitle className="text-2xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
-                      {impact.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-lg leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      {impact.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>)}
-            </div>
-
-            {/* Key Quotes */}
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h3 className="text-3xl font-serif font-bold mb-4 text-primary">Key Insights</h3>
-                <div className="w-16 h-1 bg-gradient-primary mx-auto rounded-full" />
-              </div>
               
-              <div className="grid lg:grid-cols-1 gap-8">
-                {[{
-                text: "The shift from individual competition to collective cognitive strength represents perhaps the most significant paradigm change in educational theory since Dewey.",
-                source: "Chapter 1: Theoretical Foundation",
-                icon: "💡"
-              }, {
-                text: "Ideas, not individuals, are the true units of educational selection. This recognition transforms how we understand learning, teaching, and institutional development.",
-                source: "Chapter 2: Educational Isomorphisms",
-                icon: "🧬"
-              }, {
-                text: "AI's role is not to replace human cognition but to facilitate the collective intelligence that emerges from structured cognitive conflict.",
-                source: "Chapter 4: AI Integration",
-                icon: "🤖"
-              }].map((quote, index) => <Card key={index} className="glass border-l-8 border-l-primary hover:shadow-glow transition-all duration-500 rounded-3xl animate-slide-in-right" style={{
-                animationDelay: `${index * 300}ms`
-              }}>
-                    <CardContent className="p-8">
-                      <div className="flex gap-6 items-start">
-                        <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center text-2xl text-white flex-shrink-0 shadow-medium">
-                          {quote.icon}
-                        </div>
-                        <div className="flex-1">
-                          <blockquote className="text-xl lg:text-2xl font-serif italic leading-relaxed mb-4 text-foreground">
-                            "{quote.text}"
-                          </blockquote>
-                          <cite className="text-base text-muted-foreground font-medium">
-                            — {quote.source}
-                          </cite>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>)}
+              <div className="pt-8 border-t border-muted text-sm text-muted-foreground">
+                <p>© 2024 Fabrizio Terzi. Published under Creative Commons Attribution 4.0 International License.</p>
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Resources Section */}
-        <section id="resources" className="py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Resources & Citations
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Access the complete research, author information, and proper citation formats
-              </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
-            </div>
-            
-            <div className="grid lg:grid-cols-3 gap-8 mb-20">
-              {[{
-              icon: "🔗",
-              title: "Official DOI",
-              link: "https://doi.org/10.5281/zenodo.16961291",
-              text: "https://doi.org/10.5281/zenodo.16961291"
-            }, {
-              icon: "📄",
-              title: "Download Thesis",
-              link: "/Cognitive_Intraspecific_Selection_EN.pdf",
-              text: "Full PDF Document"
-            }, {
-              icon: "👤",
-              title: "Author Profile",
-              link: "https://orcid.org/0009-0004-7191-0455",
-              text: "ORCID: 0009-0004-7191-0455"
-            }].map((resource, index) => <Card key={index} className="group glass text-center hover:shadow-glow transition-all duration-500 hover:scale-105 rounded-3xl border-0 animate-scale-in" style={{
-              animationDelay: `${index * 150}ms`
-            }}>
-                  <CardHeader>
-                    <div className="w-20 h-20 bg-gradient-primary rounded-3xl flex items-center justify-center text-3xl text-white mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-strong">
-                      {resource.icon}
-                    </div>
-                    <CardTitle className="text-xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
-                      {resource.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <a href={resource.link} target="_blank" rel="noopener" download={resource.title.includes("Download") ? true : undefined} className="text-primary hover:text-accent transition-colors duration-300 font-medium break-all">
-                      {resource.text}
-                    </a>
-                  </CardContent>
-                </Card>)}
-            </div>
-            
-            {/* Citation Formats */}
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-2xl font-semibold text-center mb-8">How to Cite</h3>
-              
-              <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>APA Format</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="bg-muted p-4 rounded-lg font-mono text-sm relative">
-                      <p>Terzi, F. (2025). <em>Cognitive intraspecific selection in education: From individualism to collective strength</em> [Preprint]. Pyragogy.org. https://doi.org/10.5281/zenodo.16961291</p>
-                      <Button size="sm" variant="outline" className="absolute top-2 right-2" onClick={() => copyToClipboard("Terzi, F. (2025). Cognitive intraspecific selection in education: From individualism to collective strength [Preprint]. Pyragogy.org. https://doi.org/10.5281/zenodo.16961291")}>
-                        📋
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardHeader>
-                    <CardTitle>BibTeX</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="bg-muted p-4 rounded-lg font-mono text-sm relative">
-                      <pre>{`@misc{terzi2025cognitive,
-  title={Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength},
-  author={Terzi, Fabrizio},
-  year={2025},
-  publisher={Pyragogy.org},
-  doi={10.5281/zenodo.16961291},
-  url={https://doi.org/10.5281/zenodo.16961291}
-}`}</pre>
-                      <Button size="sm" variant="outline" className="absolute top-2 right-2" onClick={() => copyToClipboard(`@misc{terzi2025cognitive,
-  title={Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength},
-  author={Terzi, Fabrizio},
-  year={2025},
-  publisher={Pyragogy.org},
-  doi={10.5281/zenodo.16961291},
-  url={https://doi.org/10.5281/zenodo.16961291}
-}`)}>
-                        📋
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
+        </footer>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-foreground text-background py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <img src="/logo-full.png" alt="Pyragogy.org" className="h-10 w-auto mb-4 brightness-0 invert" />
-              <p className="text-background/80 leading-relaxed">
-                Advancing collective intelligence through evolutionary educational research.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact Author</h3>
-              <p className="text-background/80 mb-2">
-                <a href="mailto:[EMAIL_AUTORE]" className="hover:text-background transition-colors">[EMAIL_AUTORE]</a>
-              </p>
-              <p className="text-background/80">
-                <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener" className="hover:text-background transition-colors">
-                  ORCID Profile
-                </a>
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Connect</h3>
-              <div className="flex gap-4">
-                <a href="[TWITTER_URL]" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors">🐦</a>
-                <a href="[LINKEDIN_URL]" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors">💼</a>
-                <a href="[ACADEMIA_URL]" className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors">🎓</a>
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-background/20 pt-8 text-center">
-            <p className="text-background/60 text-sm">
-              © 2025 Pyragogy.org. This work is licensed under a Creative Commons Attribution 4.0 International License.
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      {/* Back to top button */}
-      <Button className="fixed bottom-8 right-8 rounded-full w-12 h-12 p-0 shadow-lg" onClick={() => window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })}>
-        ↑
-      </Button>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
