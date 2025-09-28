@@ -143,24 +143,42 @@ const Index = () => {
                 <div className="relative group">
                   <Card className="w-96 h-[500px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
-                    <CardContent className="h-full flex flex-col justify-between p-10 relative z-10 bg-indigo-900 rounded-3xl">
-                      <div className="space-y-4">
+                    <CardContent className="h-full flex flex-col justify-between p-10 relative z-10 bg-gradient-to-br from-primary via-primary-dark to-accent rounded-3xl">
+                      {/* Logo e Header */}
+                      <div className="space-y-6">
+                        <div className="flex items-center justify-center mb-6">
+                          <img src="/logo-full.png" alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
+                        </div>
                         
-                        <h2 className="text-3xl font-serif font-bold text-primary-foreground leading-tight">
-                          Cognitive Intraspecific Selection
-                        </h2>
-                        <p className="text-xl text-primary-foreground/90 font-light">
-                          in Education
-                        </p>
+                        <div className="text-center space-y-4">
+                          <h2 className="text-3xl font-serif font-bold text-white leading-tight">
+                            Cognitive Intraspecific Selection
+                          </h2>
+                          <p className="text-xl text-white/90 font-light italic">
+                            in Education
+                          </p>
+                          <div className="w-20 h-0.5 bg-white/30 mx-auto rounded-full" />
+                          <p className="text-sm text-white/80 uppercase tracking-wider font-medium">
+                            Academic Thesis
+                          </p>
+                        </div>
                       </div>
                       
-                      <div className="space-y-2">
-                        <p className="text-lg font-semibold text-primary-foreground">Fabrizio Terzi</p>
-                        <p className="text-sm text-primary-foreground/80">Pyragogy Research Initiative</p>
-                        <div className="flex gap-2 mt-4">
-                          <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
-                          <div className="w-2 h-2 bg-warning rounded-full animate-pulse delay-200" />
-                          <div className="w-2 h-2 bg-accent rounded-full animate-pulse delay-400" />
+                      {/* Footer con autore */}
+                      <div className="space-y-4 text-center">
+                        <div className="space-y-1">
+                          <p className="text-lg font-semibold text-white">Fabrizio Terzi</p>
+                          <p className="text-sm text-white/80">Pyragogy Research Initiative</p>
+                        </div>
+                        
+                        <div className="flex justify-center gap-3 mt-4">
+                          <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" />
+                          <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse delay-200" />
+                          <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse delay-400" />
+                        </div>
+                        
+                        <div className="text-xs text-white/60 mt-4">
+                          2024 • Creative Commons 4.0
                         </div>
                       </div>
                     </CardContent>
