@@ -62,12 +62,18 @@ const Index = () => {
         Skip to main content
       </a>
       
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b z-40">
+      {/* Header - Enhanced Sticky Navigation */}
+      <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md border-b shadow-lg z-40 transition-all duration-300">
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <img src="/logo-full.png" alt="Pyragogy.org" className="h-10 w-auto" />
-            <span className="text-lg font-semibold">Pyragogy Research</span>
+          <div className="flex items-center gap-4 group">
+            <img 
+              src="/logo-full.png" 
+              alt="Pyragogy.org" 
+              className="h-10 w-auto transition-all duration-300 group-hover:scale-105" 
+            />
+            <span className="text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Pyragogy Research
+            </span>
           </div>
           
           <button className="md:hidden flex flex-col gap-1 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle navigation menu">
@@ -77,12 +83,12 @@ const Index = () => {
           </button>
           
           <div className="flex items-center gap-4">
-            <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background md:bg-transparent border-b md:border-0 gap-6 p-4 md:p-0`}>
-              <li><button onClick={() => scrollToSection('abstract')} className={`nav-link ${activeSection === 'abstract' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Abstract</button></li>
-              <li><button onClick={() => scrollToSection('key-points')} className={`nav-link ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Key Points</button></li>
-              <li><button onClick={() => scrollToSection('timeline')} className={`nav-link ${activeSection === 'timeline' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Timeline</button></li>
-              <li><button onClick={() => scrollToSection('testimonials')} className={`nav-link ${activeSection === 'testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Reviews</button></li>
-              <li><button onClick={() => scrollToSection('resources')} className={`nav-link ${activeSection === 'resources' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors`}>Resources</button></li>
+            <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background/95 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b md:border-0 gap-6 p-4 md:p-0 shadow-lg md:shadow-none`}>
+              <li><button onClick={() => scrollToSection('abstract')} className={`nav-link relative font-medium ${activeSection === 'abstract' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Abstract</button></li>
+              <li><button onClick={() => scrollToSection('key-points')} className={`nav-link relative font-medium ${activeSection === 'key-points' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Key Points</button></li>
+              <li><button onClick={() => scrollToSection('timeline')} className={`nav-link relative font-medium ${activeSection === 'timeline' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Timeline</button></li>
+              <li><button onClick={() => scrollToSection('testimonials')} className={`nav-link relative font-medium ${activeSection === 'testimonials' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Reviews</button></li>
+              <li><button onClick={() => scrollToSection('resources')} className={`nav-link relative font-medium ${activeSection === 'resources' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Resources</button></li>
             </ul>
             <ThemeToggle />
           </div>
@@ -107,12 +113,12 @@ const Index = () => {
                   
                 </div>
                 
-                <h1 className="text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px">
+                <h1 className="text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px animate-reveal">
                   Cognitive Intraspecific Selection
-                  <span className="block text-4xl lg:text-5xl mt-2 text-foreground">in Education</span>
+                  <span className="block text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
                 </h1>
                 
-                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light">From Individualism to Collective Strength — A Framework for Educational Evolution</p>
+                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength — A Framework for Educational Evolution</p>
                 
                 <div className="space-y-3 p-6 glass rounded-2xl">
                   <p className="text-xl font-serif font-semibold">Fabrizio Terzi</p>
@@ -122,18 +128,18 @@ const Index = () => {
                 </div>
                 
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300 px-8 py-6 text-lg rounded-2xl group">
+                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
                     <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
-                      <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                      <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
                       Download Full Thesis
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl group">
-                    <Search className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass hover:bg-primary/10 hover:border-primary/30 transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
+                    <Search className="w-5 h-5 mr-2 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                     Explore Abstract
                   </Button>
-                  <Button variant="outline" size="lg" onClick={() => copyToClipboard(window.location.href)} className="glass hover:bg-primary/5 transition-all duration-300 px-8 py-6 text-lg rounded-2xl group">
-                    <Share2 className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                  <Button variant="outline" size="lg" onClick={() => copyToClipboard(window.location.href)} className="glass hover:bg-primary/10 hover:border-primary/30 transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
+                    <Share2 className="w-5 h-5 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
                     Share Research
                   </Button>
                 </div>

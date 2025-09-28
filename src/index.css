@@ -145,13 +145,25 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Perfect typography hierarchy */
+  /* Perfect typography hierarchy - Academic Premium */
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
-    font-feature-settings: "lnum" 1;
+    font-feature-settings: "lnum" 1, "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Academic text styling */
+  .academic-text {
+    @apply font-serif leading-relaxed tracking-wide;
+    font-feature-settings: "kern" 1, "liga" 1;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
   }
 
   /* Smooth scrolling */
@@ -159,11 +171,18 @@
     scroll-behavior: smooth;
   }
 
-  /* Glass morphism utility */
+  /* Glass morphism utility - Enhanced */
   .glass {
-    backdrop-filter: blur(16px) saturate(180%);
-    background-color: hsl(var(--background) / 0.75);
-    border: 1px solid hsl(var(--border) / 0.18);
+    backdrop-filter: blur(20px) saturate(180%);
+    background-color: hsl(var(--background) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass:hover {
+    backdrop-filter: blur(24px) saturate(200%);
+    border-color: hsl(var(--primary) / 0.3);
+    box-shadow: var(--shadow-glow);
   }
 
   /* Perfect shadows */

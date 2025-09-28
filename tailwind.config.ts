@@ -125,6 +125,15 @@ export default {
           "0%": { opacity: "0", transform: "translateY(30px) scale(0.95)" },
           "100%": { opacity: "1", transform: "translateY(0) scale(1)" }
         },
+        "elegant-hover": {
+          "0%": { transform: "scale(1) translateY(0px)" },
+          "100%": { transform: "scale(1.02) translateY(-2px)" }
+        },
+        "button-press": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(0.95)" },
+          "100%": { transform: "scale(1)" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.3s ease-out",
@@ -138,6 +147,8 @@ export default {
         "parallax": "parallax 20s ease-in-out infinite alternate",
         "reveal": "reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
         "fade-in-up": "fade-in-up 0.6s ease-out",
+        "elegant-hover": "elegant-hover 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        "button-press": "button-press 0.15s ease-in-out",
       },
     },
   },
