@@ -107,7 +107,7 @@ const Index = () => {
                   
                 </div>
                 
-                <h1 className="text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
+                <h1 className="text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px">
                   Cognitive Intraspecific Selection
                   <span className="block text-4xl lg:text-5xl mt-2 text-foreground">in Education</span>
                 </h1>
@@ -448,9 +448,7 @@ const Index = () => {
                 <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
               
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Advancing educational theory through revolutionary research in cognitive selection and collective intelligence building.
-              </p>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">Advancing educational theory through  research in cognitive selection and collective intelligence building.</p>
               
               <div className="flex justify-center gap-6">
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
