@@ -6,10 +6,16 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { NewsletterSignup } from "@/components/ui/newsletter-signup";
 import { CitationGenerator } from "@/components/ui/citation-generator";
+import { EnhancedCitation } from "@/components/ui/enhanced-citation";
 import { ParallaxSection } from "@/components/ui/parallax-section";
 import { Testimonials } from "@/components/ui/testimonials";
 import { Timeline } from "@/components/ui/timeline";
-import { Share2, Download, ExternalLink, Search, BookOpen, Users } from 'lucide-react';
+import { SearchBar } from "@/components/ui/search-bar";
+import { ReadingProgress } from "@/components/ui/reading-progress";
+import { SmartNavigation } from "@/components/ui/smart-navigation";
+import { SocialSharing } from "@/components/ui/social-sharing";
+import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
+import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users2, TrendingUp, Brain, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -54,8 +60,12 @@ const Index = () => {
       console.error('Failed to copy text: ', err);
     }
   };
-  return <div className="min-h-screen bg-background">
-      <ScrollProgress />
+  return (
+    <>
+      <div className="min-h-screen bg-background">
+        <ScrollProgress />
+        <ReadingProgress />
+        <SmartNavigation />
       
       {/* Skip to main content for accessibility */}
       <a href="#main" className="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">
@@ -83,12 +93,13 @@ const Index = () => {
           </button>
           
           <div className="flex items-center gap-4">
+            <SearchBar className="hidden lg:block w-64" />
             <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background/95 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b md:border-0 gap-6 p-4 md:p-0 shadow-lg md:shadow-none`}>
               <li><button onClick={() => scrollToSection('abstract')} className={`nav-link relative font-medium ${activeSection === 'abstract' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Abstract</button></li>
-              <li><button onClick={() => scrollToSection('key-points')} className={`nav-link relative font-medium ${activeSection === 'key-points' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Key Points</button></li>
-              <li><button onClick={() => scrollToSection('timeline')} className={`nav-link relative font-medium ${activeSection === 'timeline' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Timeline</button></li>
-              <li><button onClick={() => scrollToSection('testimonials')} className={`nav-link relative font-medium ${activeSection === 'testimonials' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Reviews</button></li>
-              <li><button onClick={() => scrollToSection('resources')} className={`nav-link relative font-medium ${activeSection === 'resources' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}>Resources</button></li>
+              <li><button onClick={() => scrollToSection('key-points')} className={`nav-link relative font-medium ${activeSection === 'key-points' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`">Key Points</button></li>
+              <li><button onClick={() => scrollToSection('timeline')} className={`nav-link relative font-medium ${activeSection === 'timeline' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`">Timeline</button></li>
+              <li><button onClick={() => scrollToSection('testimonials')} className={`nav-link relative font-medium ${activeSection === 'testimonials' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`">Reviews</button></li>
+              <li><button onClick={() => scrollToSection('resources')} className={`nav-link relative font-medium ${activeSection === 'resources' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`">Resources</button></li>
             </ul>
             <ThemeToggle />
           </div>
@@ -138,10 +149,7 @@ const Index = () => {
                     <Search className="w-5 h-5 mr-2 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                     Explore Abstract
                   </Button>
-                  <Button variant="outline" size="lg" onClick={() => copyToClipboard(window.location.href)} className="glass hover:bg-primary/10 hover:border-primary/30 transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
-                    <Share2 className="w-5 h-5 mr-2 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
-                    Share Research
-                  </Button>
+                  <SocialSharing className="px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold" />
                 </div>
               </div>
               
@@ -211,12 +219,12 @@ const Index = () => {
             </div>
             
             <div className="max-w-5xl mx-auto space-y-8">
-              <Card className="glass p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
-                <p className="text-2xl lg:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-8">
-                  This thesis presents a groundbreaking transposition of biological intraspecific selection to educational contexts, 
-                  reimagining how ideas compete, evolve, and strengthen collective intelligence.
-                </p>
-              </Card>
+                <Card className="glass p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
+                  <p className="text-2xl lg:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-8">
+                    This thesis presents a groundbreaking transposition of biological <GlossaryTooltip term="intraspecific selection">intraspecific selection</GlossaryTooltip> to educational contexts, 
+                    reimagining how ideas compete, evolve, and strengthen <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip>.
+                  </p>
+                </Card>
               
               <div className="grid lg:grid-cols-2 gap-8">
                 <Card className="glass p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right">
@@ -228,7 +236,7 @@ const Index = () => {
                   </div>
                   <p className="text-lg leading-relaxed text-muted-foreground">
                     By treating ideas as the fundamental unit of selection rather than individuals, we explore four critical 
-                    isomorphisms: variation in educational approaches, selection through epistemic competition, 
+                    isomorphisms: variation in educational approaches, selection through <GlossaryTooltip term="epistemic competition">epistemic competition</GlossaryTooltip>, 
                     heritability of successful pedagogical patterns, and adaptation to learning environments.
                   </p>
                 </Card>
@@ -241,8 +249,8 @@ const Index = () => {
                     <h3 className="text-xl font-serif font-semibold text-accent">Pyragogy Methodology</h3>
                   </div>
                   <p className="text-lg leading-relaxed text-muted-foreground">
-                    The framework introduces Pyragogy—a novel approach integrating Cognitive Reciprocation, 
-                    Ritualization of Conflict, and non-agentive AI facilitation for collective intelligence building.
+                    The framework introduces <GlossaryTooltip term="pyragogy">Pyragogy</GlossaryTooltip>—a novel approach integrating <GlossaryTooltip term="cognitive reciprocation">Cognitive Reciprocation</GlossaryTooltip>, 
+                    <GlossaryTooltip term="ritualization of conflict">Ritualization of Conflict</GlossaryTooltip>, and non-agentive AI facilitation for <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip> building.
                   </p>
                 </Card>
               </div>
@@ -255,9 +263,9 @@ const Index = () => {
                   <div>
                     <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">Impact & Implementation</h3>
                     <p className="text-lg leading-relaxed text-muted-foreground">
-                      Through proposed Educational Quality Intelligence (EQI) metrics and the innovative IdeoEvo pilot project, 
+                      Through proposed <GlossaryTooltip term="educational quality intelligence">Educational Quality Intelligence (EQI)</GlossaryTooltip> metrics and the innovative <GlossaryTooltip term="ideoevo">IdeoEvo</GlossaryTooltip> pilot project, 
                       this research offers practical pathways from traditional individualistic education toward 
-                      collective cognitive strength. The implications extend beyond pedagogy to organizational learning, 
+                      <GlossaryTooltip term="collective intelligence">collective cognitive strength</GlossaryTooltip>. The implications extend beyond pedagogy to organizational learning, 
                       policy development, and the future of human-AI collaborative intelligence.
                     </p>
                   </div>
@@ -477,7 +485,8 @@ const Index = () => {
             </div>
           </div>
         </footer>
-      </main>
-    </div>;
+      </div>
+    </>
+  );
 };
 export default Index;
