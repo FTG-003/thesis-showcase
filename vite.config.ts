@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/nome-del-tuo-repository/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/pyragogy-research/' : '/',
   server: {
     host: "::",
     port: 8080,
