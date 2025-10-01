@@ -122,48 +122,6 @@ export const SmartNavigation = () => {
 
   return (
     <>
-      {/* Floating Navigation Controls */}
-      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40">
-        <Card className="glass shadow-strong border-border/50 p-2">
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={goToPrevious}
-              disabled={currentSection === 0}
-              className="h-8 w-8 p-0"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex items-center gap-2 px-3 h-8"
-            >
-              <Menu className="w-4 h-4" />
-              <span className="text-sm font-medium">
-                {navigationSections[currentSection]?.title}
-              </span>
-              <Badge variant="secondary" className="text-xs">
-                {currentSection + 1}/{navigationSections.length}
-              </Badge>
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={goToNext}
-              disabled={currentSection === navigationSections.length - 1}
-              className="h-8 w-8 p-0"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </div>
-        </Card>
-      </div>
-
       {/* Navigation Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50">
