@@ -17,6 +17,7 @@ import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
 import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users2, TrendingUp, Brain, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import logoFull from '/logo-full.png';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,7 +78,7 @@ const Index = () => {
         <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4 group">
             <img 
-              src="/logo-full.png" 
+              src={logoFull} 
               alt="Pyragogy.org" 
               className="h-10 w-auto transition-all duration-300 group-hover:scale-105" 
             />
@@ -196,7 +197,7 @@ const Index = () => {
                       {/* Logo e Header */}
                       <div className="space-y-6">
                         <div className="flex items-center justify-center mb-6">
-                          <img src="/logo-full.png" alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
+                          <img src={logoFull} alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
                         </div>
                         
                         <div className="text-center space-y-4">
