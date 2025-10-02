@@ -12,7 +12,6 @@ import { Testimonials } from "@/components/ui/testimonials";
 import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { ReadingProgress } from "@/components/ui/reading-progress";
-import { SmartNavigation } from "@/components/ui/smart-navigation";
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
 import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users2, TrendingUp, Brain, Zap } from 'lucide-react';
@@ -66,7 +65,6 @@ const Index = () => {
       <div className="min-h-screen bg-background">
         <ScrollProgress />
         <ReadingProgress />
-        <SmartNavigation />
       
       {/* Skip to main content for accessibility */}
       <a href="#main" className="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50">
