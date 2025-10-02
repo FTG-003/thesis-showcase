@@ -19,10 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import logoFull from '/logo-full.png';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -73,68 +70,52 @@ const Index = () => {
       
       {/* Header - Enhanced Sticky Navigation */}
       <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md border-b shadow-lg z-40 transition-all duration-300">
-        <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4 group">
+        <nav className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 group">
             <img 
               src={logoFull} 
               alt="Pyragogy.org" 
               className="h-10 w-auto transition-all duration-300 group-hover:scale-105" 
             />
-            <span className="text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="hidden sm:block text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Pyragogy Research
             </span>
           </div>
           
-          <button className="md:hidden flex flex-col gap-1 p-2" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle navigation menu">
-            <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-          </button>
-          
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 md:gap-6">
+            <nav className="hidden md:flex items-center gap-6">
+              <button 
+                onClick={() => scrollToSection('abstract')} 
+                className={`nav-link relative font-medium text-sm ${activeSection === 'abstract' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'abstract' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+              >
+                Abstract
+              </button>
+              <button 
+                onClick={() => scrollToSection('key-points')} 
+                className={`nav-link relative font-medium text-sm ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'key-points' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+              >
+                Key Points
+              </button>
+              <button 
+                onClick={() => scrollToSection('timeline')} 
+                className={`nav-link relative font-medium text-sm ${activeSection === 'timeline' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'timeline' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+              >
+                Timeline
+              </button>
+              <button 
+                onClick={() => scrollToSection('testimonials')} 
+                className={`nav-link relative font-medium text-sm ${activeSection === 'testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'testimonials' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+              >
+                Reviews
+              </button>
+              <button 
+                onClick={() => scrollToSection('resources')} 
+                className={`nav-link relative font-medium text-sm ${activeSection === 'resources' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'resources' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+              >
+                Resources
+              </button>
+            </nav>
             <SearchBar className="hidden lg:block w-64" />
-            <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative top-full md:top-0 left-0 right-0 md:left-auto md:right-auto bg-background/95 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b md:border-0 gap-6 p-4 md:p-0 shadow-lg md:shadow-none`}>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('abstract')} 
-                  className={`nav-link relative font-medium ${activeSection === 'abstract' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}
-                >
-                  Abstract
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('key-points')} 
-                  className={`nav-link relative font-medium ${activeSection === 'key-points' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}
-                >
-                  Key Points
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('timeline')} 
-                  className={`nav-link relative font-medium ${activeSection === 'timeline' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}
-                >
-                  Timeline
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('testimonials')} 
-                  className={`nav-link relative font-medium ${activeSection === 'testimonials' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}
-                >
-                  Reviews
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('resources')} 
-                  className={`nav-link relative font-medium ${activeSection === 'resources' ? 'text-primary after:scale-x-100' : 'text-muted-foreground hover:text-foreground after:scale-x-0'} transition-all duration-300 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gradient-primary after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`}
-                >
-                  Resources
-                </button>
-              </li>
-            </ul>
             <ThemeToggle />
           </div>
         </nav>
