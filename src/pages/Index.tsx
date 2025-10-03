@@ -121,9 +121,9 @@ const Index = () => {
         </nav>
       </header>
 
-      <main id="main" className="pt-20">
+      <main id="main" className="pt-16">
         {/* Hero Section */}
-        <section className="relative py-32 overflow-hidden bg-gradient-hero">
+        <section className="relative pt-20 pb-32 overflow-hidden bg-gradient-hero">
           {/* Animated background elements */}
           <ParallaxSection speed={0.3} className="absolute inset-0 mx-0">
             <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float" />
