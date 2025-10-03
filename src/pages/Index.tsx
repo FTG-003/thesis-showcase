@@ -91,16 +91,16 @@ const Index = () => {
                 Abstract
               </button>
               <button 
-                onClick={() => scrollToSection('key-points')} 
-                className={`nav-link relative font-medium text-sm ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'key-points' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
-              >
-                Key Points
-              </button>
-              <button 
                 onClick={() => scrollToSection('timeline')} 
                 className={`nav-link relative font-medium text-sm ${activeSection === 'timeline' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'timeline' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
               >
                 Timeline
+              </button>
+              <button 
+                onClick={() => scrollToSection('key-points')} 
+                className={`nav-link relative font-medium text-sm ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'key-points' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+              >
+                Key Points
               </button>
               <button 
                 onClick={() => scrollToSection('testimonials')} 
