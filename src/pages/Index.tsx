@@ -347,6 +347,11 @@ const Index = () => {
               title: "Practical Implementation",
               description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
               gradient: "from-destructive to-primary"
+            }, {
+              icon: "🌐",
+              title: "Open Source & Peer Learning",
+              description: "Collaborative knowledge-sharing framework where learners co-create educational resources, fostering distributed intelligence through open methodologies.",
+              gradient: "from-primary to-accent"
             }].map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
               animationDelay: `${index * 100}ms`
             }}>
