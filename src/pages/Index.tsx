@@ -159,10 +159,6 @@ const Index = () => {
                       Download Full Thesis
                     </a>
                   </Button>
-                  <Button variant="outline" size="lg" onClick={() => scrollToSection('abstract')} className="glass hover:bg-primary/10 hover:border-primary/30 transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
-                    <Search className="w-5 h-5 mr-2 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
-                    Explore Abstract
-                  </Button>
                   <SocialSharing className="px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold" />
                 </div>
               </div>
