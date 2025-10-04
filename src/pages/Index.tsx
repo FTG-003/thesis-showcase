@@ -92,8 +92,12 @@ const IndexPage = () => {
         title: "Link Copied!",
         description: "The research link has been copied to your clipboard."
       });
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
+    } catch {
+      toast({
+        title: "Copy Failed",
+        description: "Unable to copy to clipboard.",
+        variant: "destructive"
+      });
     }
   };
   return (
@@ -487,7 +491,7 @@ const IndexPage = () => {
                 <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
               
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">Advancing educational theory through  research in cognitive selection and collective intelligence building.</p>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">Advancing educational theory through research in cognitive selection and collective intelligence building.</p>
               
               <div className="flex justify-center gap-6">
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">

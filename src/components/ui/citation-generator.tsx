@@ -22,8 +22,12 @@ export const CitationGenerator = () => {
         title: "Citation Copied!",
         description: `${format.toUpperCase()} citation copied to clipboard`,
       });
-    } catch (err) {
-      console.error('Failed to copy citation: ', err);
+    } catch {
+      toast({
+        title: "Copy Failed",
+        description: "Unable to copy citation to clipboard.",
+        variant: "destructive"
+      });
     }
   };
 

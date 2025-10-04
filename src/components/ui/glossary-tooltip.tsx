@@ -161,7 +161,6 @@ export const GlossaryText = ({ children }: { children: string }) => {
   const terms = Object.keys(glossaryData);
   
   const processText = (text: string) => {
-    let processedText = text;
     const elements: React.ReactNode[] = [];
     let lastIndex = 0;
 

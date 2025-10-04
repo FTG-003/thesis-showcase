@@ -73,7 +73,7 @@ export const SearchBar = ({ className }: SearchBarProps) => {
     setResults(filteredResults);
     setIsOpen(filteredResults.length > 0);
     setHighlightedIndex(-1);
-  }, [query]);
+  }, [query, searchableContent]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -163,9 +163,10 @@ export const SearchBar = ({ className }: SearchBarProps) => {
     );
 
     const textNodes: Text[] = [];
-    let node;
-    while (node = walker.nextNode()) {
+    let node = walker.nextNode();
+    while (node) {
       textNodes.push(node as Text);
+      node = walker.nextNode();
     }
 
     textNodes.forEach(textNode => {
