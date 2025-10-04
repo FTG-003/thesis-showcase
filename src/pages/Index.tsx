@@ -20,6 +20,45 @@ import logoFull from '/logo-full.png';
 const IndexPage = () => {
   const [activeSection, setActiveSection] = useState('');
   const { toast } = useToast();
+
+  const keyPoints = [
+    {
+      icon: <Brain />,
+      title: "Idea-Centric Framework",
+      description: "Shifts focus from individual competition to collective idea evolution",
+      gradient: "from-primary to-primary-dark"
+    },
+    {
+      icon: <Users2 />,
+      title: "Cognitive Reciprocation",
+      description: "Mutual knowledge exchange strengthens collective intelligence",
+      gradient: "from-accent to-accent-dark"
+    },
+    {
+      icon: <Zap />,
+      title: "Ritualized Conflict",
+      description: "Transforms competition into constructive knowledge building",
+      gradient: "from-warning to-warning-dark"
+    },
+    {
+      icon: <Target />,
+      title: "Educational Quality Intelligence",
+      description: "Novel metrics for measuring collective learning outcomes",
+      gradient: "from-success to-success-dark"
+    },
+    {
+      icon: <TrendingUp />,
+      title: "IdeoEvo Platform",
+      description: "Practical implementation of intraspecific selection principles",
+      gradient: "from-primary to-accent"
+    },
+    {
+      icon: <Lightbulb />,
+      title: "Human-AI Collaboration",
+      description: "Non-agentive AI facilitation for enhanced collective intelligence",
+      gradient: "from-accent to-primary"
+    }
+  ];
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
