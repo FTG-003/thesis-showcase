@@ -17,7 +17,7 @@ import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip"
 import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users2, TrendingUp, Brain, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import logoFull from '/logo-full.png';
-const Index = () => {
+const IndexPage = () => {
   const [activeSection, setActiveSection] = useState('');
   const { toast } = useToast();
   useEffect(() => {
@@ -317,37 +317,7 @@ const Index = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {[{
-              icon: "🧬",
-              title: "Theoretical Innovation",
-              description: "First systematic application of intraspecific selection theory to education, establishing ideas as evolutionary units competing within learning communities.",
-              gradient: "from-primary to-primary-light"
-            }, {
-              icon: "⚡",
-              title: "Pyragogy Methodology",
-              description: "Novel framework combining Cognitive Reciprocation and Ritualized Conflict to transform educational competition into collective intelligence.",
-              gradient: "from-accent to-accent-light"
-            }, {
-              icon: "🤖",
-              title: "AI Integration",
-              description: "Non-agentive AI facilitation that supports human collective cognition without replacing human agency in learning processes.",
-              gradient: "from-success to-primary"
-            }, {
-              icon: "📊",
-              title: "EQI Metrics",
-              description: "Educational Quality Intelligence measurement framework for assessing collective cognitive development and learning outcomes.",
-              gradient: "from-warning to-accent"
-            }, {
-              icon: "🎯",
-              title: "Practical Implementation",
-              description: "IdeoEvo pilot project demonstrating real-world applications with measurable improvements in collaborative learning effectiveness.",
-              gradient: "from-destructive to-primary"
-            }, {
-              icon: "🌐",
-              title: "Open Source & Peer Learning",
-              description: "Collaborative knowledge-sharing framework where learners co-create educational resources, fostering distributed intelligence through open methodologies.",
-              gradient: "from-primary to-accent"
-            }].map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
+              {keyPoints.map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
               animationDelay: `${index * 100}ms`
             }}>
                   <CardHeader className="pb-6">
@@ -505,4 +475,4 @@ const Index = () => {
     </>
   );
 };
-export default Index;
+export default IndexPage;
