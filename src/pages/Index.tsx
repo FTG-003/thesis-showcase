@@ -20,6 +20,7 @@ import logoFull from '/logo-full.png';
 const IndexPage = () => {
   const [activeSection, setActiveSection] = useState('');
   const { toast } = useToast();
+  const pdfUrl = `${import.meta.env.BASE_URL}Cognitive_Intraspecific_Selection_EN.pdf`;
 
   const keyPoints = [
     {
@@ -197,7 +198,7 @@ const IndexPage = () => {
                 
                 <div className="flex flex-wrap gap-4 pt-4">
                   <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
-                    <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
+                    <a href={pdfUrl} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
                       Download Full Thesis
                     </a>
@@ -437,7 +438,7 @@ const IndexPage = () => {
                   Complete 120-page academic thesis with comprehensive analysis and practical applications.
                 </p>
                 <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
-                  <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
+                  <a href={pdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF
                   </a>
@@ -486,8 +487,8 @@ const IndexPage = () => {
         <footer className="py-20 bg-gradient-to-br from-muted/10 to-background border-t">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-8">
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <img src="/logo-full.png" alt="Pyragogy.org" className="h-12 w-auto" />
+                <div className="flex items-center justify-center gap-4 mb-8">
+                <img src={logoFull} alt="Pyragogy.org" className="h-12 w-auto" />
                 <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
               
@@ -501,7 +502,7 @@ const IndexPage = () => {
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
-                  <a href="/Cognitive_Intraspecific_Selection_EN.pdf" target="_blank" rel="noopener" download>
+                  <a href={pdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download Thesis
                   </a>
