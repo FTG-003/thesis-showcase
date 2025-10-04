@@ -14,7 +14,7 @@ import { SearchBar } from "@/components/ui/search-bar";
 
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
-import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users2, TrendingUp, Brain, Zap } from 'lucide-react';
+import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users as Users2, TrendingUp, Brain, Zap } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import logoFull from '/logo-full.png';
 const IndexPage = () => {
