@@ -23,7 +23,7 @@ export const NewsletterSignup = () => {
   };
 
   return (
-    <Card className="glass max-w-md mx-auto rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500">
+    <Card className="glass rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500">
       <CardHeader className="text-center">
         <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
           {isSubscribed ? (
@@ -37,7 +37,7 @@ export const NewsletterSignup = () => {
           Get notified about new research publications and insights
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         {isSubscribed ? (
           <div className="text-center space-y-4">
             <p className="text-lg text-success font-medium">

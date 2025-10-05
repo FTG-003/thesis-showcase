@@ -11,7 +11,7 @@ import {
   QrCode,
   Check 
 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from '@/components/ui/sonner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 interface SocialSharingProps {
@@ -31,7 +31,6 @@ export const SocialSharing = ({
 }: SocialSharingProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [copiedStates, setCopiedStates] = useState<Record<string, boolean>>({});
-  const { toast } = useToast();
 
   const shareData = {
     title,
@@ -44,19 +43,16 @@ export const SocialSharing = ({
     try {
       await navigator.clipboard.writeText(text);
       setCopiedStates(prev => ({ ...prev, [type]: true }));
-      toast({
-        title: "Copied!",
-        description: `${type} copied to clipboard.`
+      toast.success("Copied!", {
+        description: `${type} copied to clipboard.`,
       });
       
       setTimeout(() => {
         setCopiedStates(prev => ({ ...prev, [type]: false }));
       }, 2000);
     } catch (err) {
-      toast({
-        title: "Error",
+      toast.error("Error", {
         description: "Failed to copy to clipboard.",
-        variant: "destructive"
       });
     }
   };

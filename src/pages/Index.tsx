@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { NewsletterSignup } from "@/components/ui/newsletter-signup";
-import { CitationGenerator } from "@/components/ui/citation-generator";
 import { EnhancedCitation } from "@/components/ui/enhanced-citation";
 import { ParallaxSection } from "@/components/ui/parallax-section";
 import { Testimonials } from "@/components/ui/testimonials";
@@ -13,14 +13,10 @@ import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
-import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users as Users2, TrendingUp, Brain, Zap } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import logoFull from '/logo-full.png';
+import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users as Users2, TrendingUp, Brain, Zap, Menu } from 'lucide-react';
+import { toast } from '@/components/ui/sonner';
 const IndexPage = () => {
   const [activeSection, setActiveSection] = useState('');
-  const {
-    toast
-  } = useToast();
   const pdfUrl = `${import.meta.env.BASE_URL}Cognitive_Intraspecific_Selection_EN.pdf`;
   const keyPoints = [{
     icon: <Brain />,
@@ -82,16 +78,13 @@ const IndexPage = () => {
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast({
-        title: "Link Copied!",
-        description: "The research link has been copied to your clipboard."
-      });
+      toast.success("Link Copied!", {
+        description: "The research link has been copied to your clipboard.",
+      })
     } catch {
-      toast({
-        title: "Copy Failed",
+      toast.error("Copy Failed", {
         description: "Unable to copy to clipboard.",
-        variant: "destructive"
-      });
+      })
     }
   };
   return <>
@@ -107,32 +100,56 @@ const IndexPage = () => {
       <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md border-b shadow-lg z-40 transition-all duration-300">
         <nav className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 group">
-            <img src={logoFull} alt="Pyragogy.org" className="h-10 w-auto transition-all duration-300 group-hover:scale-105" />
+        <img src="/logo-full.png" alt="Pyragogy.org" className="h-10 w-auto transition-all duration-300 group-hover:scale-105" />
             <span className="hidden sm:block text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Pyragogy Research
             </span>
           </div>
           
-          <div className="flex items-center gap-3 md:gap-6">
-            <nav className="hidden md:flex items-center gap-6">
-              <button onClick={() => scrollToSection('abstract')} className={`nav-link relative font-medium text-sm ${activeSection === 'abstract' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'abstract' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>
-                Abstract
-              </button>
-              <button onClick={() => scrollToSection('timeline')} className={`nav-link relative font-medium text-sm ${activeSection === 'timeline' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'timeline' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>
-                Timeline
-              </button>
-              <button onClick={() => scrollToSection('key-points')} className={`nav-link relative font-medium text-sm ${activeSection === 'key-points' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'key-points' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>
-                Key Points
-              </button>
-              <button onClick={() => scrollToSection('testimonials')} className={`nav-link relative font-medium text-sm ${activeSection === 'testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'testimonials' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>
-                Reviews
-              </button>
-              <button onClick={() => scrollToSection('resources')} className={`nav-link relative font-medium text-sm ${activeSection === 'resources' ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === 'resources' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}>
-                Resources
-              </button>
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-4 lg:gap-6">
+              {['abstract', 'timeline', 'key-points', 'testimonials', 'resources'].map(id => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`nav-link relative font-medium text-sm capitalize ${activeSection === id ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === id ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+                >
+                  {id.replace('-', ' ')}
+                </button>
+              ))}
             </nav>
-            <SearchBar className="hidden lg:block w-64" />
+            <SearchBar className="hidden lg:block w-56" />
             <ThemeToggle />
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="glass">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[280px] glass">
+                  <nav className="flex flex-col gap-6 pt-10">
+                    {['abstract', 'timeline', 'key-points', 'testimonials', 'resources'].map(id => (
+                      <SheetClose key={id} asChild>
+                        <button
+                          onClick={() => scrollToSection(id)}
+                          className={`text-lg font-medium capitalize ${activeSection === id ? 'text-primary' : 'text-foreground'}`}
+                        >
+                          {id.replace('-', ' ')}
+                        </button>
+                      </SheetClose>
+                    ))}
+                    <div className="pt-4 border-t">
+                      <SearchBar />
+                    </div>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </nav>
       </header>
@@ -148,19 +165,19 @@ const IndexPage = () => {
           </ParallaxSection>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="space-y-8 animate-fade-in-up">
                 <div className="flex gap-3">
                   
                   
                 </div>
                 
-                <h1 className="text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px animate-reveal">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px animate-reveal">
                   Cognitive Intraspecific Selection
-                  <span className="block text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
+                  <span className="block text-3xl sm:text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
                 </h1>
                 
-                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength — A Framework for Educational Evolution</p>
+                <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength — A Framework for Educational Evolution</p>
                 
                 <div className="space-y-3 p-4 glass rounded-2xl inline-block">
                   <p className="text-xl font-serif font-semibold">Fabrizio Terzi</p>
@@ -169,7 +186,7 @@ const IndexPage = () => {
                   </a>
                 </div>
                 
-                <div className="flex flex-wrap gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
                   <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
                     <a href={pdfUrl} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
@@ -180,7 +197,7 @@ const IndexPage = () => {
                 </div>
               </div>
               
-              <div className="flex justify-center lg:justify-end animate-fade-in delay-300">
+              <div className="hidden lg:flex justify-center lg:justify-end animate-fade-in delay-300">
                 <div className="relative group">
                   <Card className="w-96 h-[500px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
@@ -188,7 +205,7 @@ const IndexPage = () => {
                       {/* Logo e Header */}
                       <div className="space-y-6">
                         <div className="flex items-center justify-center mb-6">
-                          <img src={logoFull} alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
+                          <img src="/logo-full.png" alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
                         </div>
                         
                         <div className="text-center space-y-4">
@@ -237,15 +254,15 @@ const IndexPage = () => {
           <div className="absolute inset-0 bg-gradient-card" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Executive Summary
               </h2>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
             </div>
             
             <div className="max-w-5xl mx-auto space-y-8">
-                <Card className="glass p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
-                  <p className="text-2xl lg:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-8">
+                <Card className="glass p-6 sm:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-8">
                     This thesis presents a groundbreaking transposition of biological <GlossaryTooltip term="intraspecific selection">intraspecific selection</GlossaryTooltip> to educational contexts, 
                     reimagining how ideas compete, evolve, and strengthen <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip>.
                   </p>
@@ -253,13 +270,13 @@ const IndexPage = () => {
               
               <div className="grid lg:grid-cols-2 gap-8">
                 <Card className="glass p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right">
-                  <div className="flex items-start gap-4 mb-6">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
                     <div className="w-12 h-12 bg-gradient-primary rounded-2xl flex items-center justify-center text-white text-xl flex-shrink-0">
                       🔬
                     </div>
                     <h3 className="text-xl font-serif font-semibold text-primary">Core Framework</h3>
                   </div>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
+                  <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
                     By treating ideas as the fundamental unit of selection rather than individuals, we explore four critical 
                     isomorphisms: variation in educational approaches, selection through <GlossaryTooltip term="epistemic competition">epistemic competition</GlossaryTooltip>, 
                     heritability of successful pedagogical patterns, and adaptation to learning environments.
@@ -267,27 +284,27 @@ const IndexPage = () => {
                 </Card>
                 
                 <Card className="glass p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right delay-200">
-                  <div className="flex items-start gap-4 mb-6">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
                     <div className="w-12 h-12 bg-gradient-accent rounded-2xl flex items-center justify-center text-white text-xl flex-shrink-0">
                       🎯
                     </div>
                     <h3 className="text-xl font-serif font-semibold text-accent">Pyragogy Methodology</h3>
                   </div>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
+                  <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
                     The framework introduces <GlossaryTooltip term="pyragogy">Pyragogy</GlossaryTooltip>—a novel approach integrating <GlossaryTooltip term="cognitive reciprocation">Cognitive Reciprocation</GlossaryTooltip>, 
                     <GlossaryTooltip term="ritualization of conflict">Ritualization of Conflict</GlossaryTooltip>, and non-agentive AI facilitation for <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip> building.
                   </p>
                 </Card>
               </div>
               
-              <Card className="glass p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-fade-in-up delay-400">
-                <div className="flex items-start gap-6">
+              <Card className="glass p-6 sm:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-fade-in-up delay-400">
+                <div className="flex flex-col sm:flex-row items-start gap-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-success to-warning rounded-3xl flex items-center justify-center text-white text-2xl flex-shrink-0">
                     📊
                   </div>
                   <div>
                     <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">Impact & Implementation</h3>
-                    <p className="text-lg leading-relaxed text-muted-foreground">
+                    <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
                       Through proposed <GlossaryTooltip term="educational quality intelligence">Educational Quality Intelligence (EQI)</GlossaryTooltip> metrics and the innovative <GlossaryTooltip term="ideoevo">IdeoEvo</GlossaryTooltip> pilot project, 
                       this research offers practical pathways from traditional individualistic education toward 
                       <GlossaryTooltip term="collective intelligence">collective cognitive strength</GlossaryTooltip>. The implications extend beyond pedagogy to organizational learning, 
@@ -305,10 +322,10 @@ const IndexPage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-background to-muted/20" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mx-0 px-[24px] my-0 py-[7px]">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-[3px]">
                 Research Journey
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 The evolution of revolutionary educational theory from concept to implementation
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
@@ -322,10 +339,10 @@ const IndexPage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Key Contributions
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Revolutionary insights that transform how we understand educational evolution and collective intelligence
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
@@ -365,10 +382,10 @@ const IndexPage = () => {
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-[3px]">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-[3px]">
                 Academic Recognition
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Insights from leading researchers and educators worldwide
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
@@ -382,17 +399,17 @@ const IndexPage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Research Resources
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Tools and resources to support your academic work and research
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
             </div>
             
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-20">
-              <CitationGenerator />
+            <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto mb-20">
+              <EnhancedCitation />
               <NewsletterSignup />
             </div>
             
@@ -460,8 +477,8 @@ const IndexPage = () => {
         <footer className="py-20 bg-gradient-to-br from-muted/10 to-background border-t">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-8">
-                <div className="flex items-center justify-center gap-4 mb-8">
-                <img src={logoFull} alt="Pyragogy.org" className="h-12 w-auto" />
+            <div className="flex items-center justify-center gap-4 mb-8">
+            <img src="/logo-full.png" alt="Pyragogy.org" className="h-12 w-auto" />
                 <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
               

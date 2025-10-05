@@ -16,7 +16,7 @@ import {
   User,
   Link2
 } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from '@/components/ui/sonner';
 
 interface CitationStyle {
   name: string;
@@ -162,15 +162,13 @@ export const EnhancedCitation = () => {
   const [citationData, setCitationData] = useState<CitationData>(defaultCitationData);
   const [copiedStyles, setCopiedStyles] = useState<Set<string>>(new Set());
   const [isCustomizing, setIsCustomizing] = useState(false);
-  const { toast } = useToast();
 
   const copyToClipboard = async (text: string, style: string) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedStyles(prev => new Set([...prev, style]));
       toast({
-        title: "Citation Copied!",
-        description: `${citationStyles.find(s => s.code === style)?.name} citation copied to clipboard.`
+        title: "Citation Copied!", description: `${citationStyles.find(s => s.code === style)?.name} citation copied to clipboard.`
       });
       
       setTimeout(() => {
@@ -181,11 +179,7 @@ export const EnhancedCitation = () => {
         });
       }, 2000);
     } catch (err) {
-      toast({
-        title: "Error",
-        description: "Failed to copy citation.",
-        variant: "destructive"
-      });
+      toast.error("Error", { description: "Failed to copy citation." });
     }
   };
 
