@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { siteConfig, keyPoints as keyPointsData } from '@/components/ui/content';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
@@ -14,12 +13,44 @@ import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
-import { Download, ExternalLink, BookOpen, Users, Menu, Mail } from 'lucide-react';
+import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users as Users2, TrendingUp, Brain, Zap, Menu, Mail } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
 import logoFull from '/logo-full.png';
 
 const IndexPage = () => {
   const [activeSection, setActiveSection] = useState('');
+  const pdfUrl = `${import.meta.env.BASE_URL}Cognitive_Intraspecific_Selection_EN.pdf`;
+  const keyPoints = [{
+    icon: <Brain />,
+    title: "Idea-Centric Framework",
+    description: "Shifts focus from individual competition to collective idea evolution",
+    gradient: "from-primary to-primary-dark"
+  }, {
+    icon: <Users2 />,
+    title: "Cognitive Reciprocation",
+    description: "Mutual knowledge exchange strengthens collective intelligence",
+    gradient: "from-accent to-accent-dark"
+  }, {
+    icon: <Zap />,
+    title: "Ritualized Conflict",
+    description: "Transforms competition into constructive knowledge building",
+    gradient: "from-warning to-warning-dark"
+  }, {
+    icon: <Target />,
+    title: "Educational Quality Intelligence",
+    description: "Novel metrics for measuring collective learning outcomes",
+    gradient: "from-success to-success-dark"
+  }, {
+    icon: <TrendingUp />,
+    title: "IdeoEvo Platform",
+    description: "Practical implementation of intraspecific selection principles",
+    gradient: "from-primary to-accent"
+  }, {
+    icon: <Lightbulb />,
+    title: "Human-AI Collaboration",
+    description: "Non-agentive AI facilitation for enhanced collective intelligence",
+    gradient: "from-accent to-primary"
+  }];
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -144,25 +175,25 @@ const IndexPage = () => {
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px animate-reveal">
-                  {siteConfig.thesisTitle}
+                  Cognitive Intraspecific Selection
                   <span className="block text-3xl sm:text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
                 </h1>
                 
                 <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength — 
                   <span className="block">
-                    {siteConfig.thesisSubtitle.split('— ')[1]}
+                    A Framework for Educational Evolution
                   </span></p>
                 
                 <div className="space-y-3 p-4 glass rounded-2xl inline-block">
-                  <p className="text-xl font-serif font-semibold">{siteConfig.author}</p>
-                  <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener" className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:underline decoration-primary/30">
-                    ORCID: {siteConfig.orcid} →
+                  <p className="text-xl font-serif font-semibold">Fabrizio Terzi</p>
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener" className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:underline decoration-primary/30">
+                    ORCID: 0009-0004-7191-0455 →
                   </a>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
-                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold" >
-                    <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
+                    <a href={pdfUrl} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
                       Download Full Thesis
                     </a>
@@ -184,7 +215,7 @@ const IndexPage = () => {
                         
                         <div className="text-center space-y-4">
                           <h2 className="text-3xl font-serif font-bold text-white leading-tight">
-                            {siteConfig.thesisTitle}
+                            Cognitive Intraspecific Selection
                           </h2>
                           <p className="text-xl text-white/90 font-light italic">
                             in Education
@@ -199,8 +230,8 @@ const IndexPage = () => {
                       {/* Footer con autore */}
                       <div className="space-y-4 text-center">
                         <div className="space-y-1">
-                          <p className="text-lg font-semibold text-white">{siteConfig.author}</p>
-                          <p className="text-sm text-white/80">{siteConfig.publisher}</p>
+                          <p className="text-lg font-semibold text-white">Fabrizio Terzi</p>
+                          <p className="text-sm text-white/80">Pyragogy Research Initiative</p>
                         </div>
                         
                         <div className="flex justify-center gap-3 mt-4">
@@ -209,7 +240,7 @@ const IndexPage = () => {
                           <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse delay-400" />
                         </div>
                         
-                        <div className="text-xs text-white/60 mt-4">{siteConfig.publicationYear} • Creative Commons 4.0</div>
+                        <div className="text-xs text-white/60 mt-4">2025 • Creative Commons 4.0</div>
                       </div>
                     </CardContent>
                     
@@ -323,12 +354,12 @@ const IndexPage = () => {
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {keyPointsData.map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
+              {keyPoints.map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
                 animationDelay: `${index * 100}ms`
               }}>
                   <CardHeader className="pb-6">
-                    <div className={`w-20 h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-3xl text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`} >
-                      <point.icon />
+                    <div className={`w-20 h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-3xl text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
+                      {point.icon}
                     </div>
                     <CardTitle className="text-2xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
                       {point.title}
@@ -367,7 +398,7 @@ const IndexPage = () => {
             
             <div className="text-center animate-fade-in-up delay-300">
               <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
-                <a href={`mailto:${siteConfig.contactEmail}?subject=Feedback on Cognitive Intraspecific Selection Thesis`}>
+                <a href="mailto:info@pyragogy.org?subject=Feedback on Cognitive Intraspecific Selection Thesis">
                   <Mail className="w-5 h-5 mr-3 group-hover:animate-bounce" />
                   Share Your Feedback
                 </a>
@@ -408,7 +439,7 @@ const IndexPage = () => {
                   Complete 120-page academic thesis with comprehensive analysis and practical applications.
                 </p>
                 <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
-                  <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                  <a href={pdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF
                   </a>
@@ -426,7 +457,7 @@ const IndexPage = () => {
                   Join the growing community of researchers exploring cognitive selection in education.
                 </p>
                 <Button asChild variant="outline" className="w-full glass hover:bg-accent/5 transition-all duration-300">
-                  <a href={siteConfig.social.community} target="_blank" rel="noopener" className="flex items-center justify-center">
+                  <a href="https://docs.pyragogy.org/core/why/" target="_blank" rel="noopener" className="flex items-center justify-center">
                     <Users className="w-4 h-4 mr-3" />
                     Join Community
                   </a>
@@ -444,7 +475,7 @@ const IndexPage = () => {
                   Access the author's complete academic profile and additional research publications.
                 </p>
                 <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300">
-                  <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener">
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Profile
                   </a>
@@ -468,19 +499,19 @@ const IndexPage = () => {
               
               <div className="flex justify-center gap-6">
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
-                  <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener">
+                  <a href="https://orcid.org/0009-0004-7191-0455" target="_blank" rel="noopener">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     ORCID Profile
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
-                  <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                  <a href={pdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download Thesis
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
-                  <a href={`mailto:${siteConfig.contactEmail}`}>
+                  <a href="mailto:info@pyragogy.org">
                     <Mail className="w-4 h-4 mr-2" />
                     Contact Us
                   </a>
@@ -488,7 +519,7 @@ const IndexPage = () => {
               </div>
               
               <div className="pt-8 border-t border-muted text-sm text-muted-foreground">
-                <p>© {siteConfig.publicationYear} {siteConfig.author}. Published under Creative Commons Attribution 4.0 International License.</p>
+                <p>© 2025 Fabrizio Terzi. Published under Creative Commons Attribution 4.0 International License.</p>
               </div>
             </div>
           </div>
