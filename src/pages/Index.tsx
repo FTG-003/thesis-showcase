@@ -71,8 +71,8 @@ const IndexPage = () => {
       <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md border-b shadow-lg z-40 transition-all duration-300">
         <nav className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 group">
-        <img src={logoFull} alt="Pyragogy.org" className="h-10 w-auto transition-all duration-300 group-hover:scale-105" />
-            <span className="hidden sm:block text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <img src={logoFull} alt="Pyragogy.org" className="h-8 sm:h-10 w-auto transition-all duration-300 group-hover:scale-105" />
+            <span className="text-base sm:text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Pyragogy Research
             </span>
           </div>
@@ -138,7 +138,12 @@ const IndexPage = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="space-y-6 animate-fade-in-up">
-                
+            <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="space-y-8 animate-fade-in-up text-center lg:text-left">
+                <div className="flex gap-3">
+                  
+                  
+                </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent px-0 py-px animate-reveal">
                   {siteConfig.thesisTitle}
                   <span className="block text-3xl sm:text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
@@ -156,7 +161,7 @@ const IndexPage = () => {
                   </a>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4 justify-center lg:justify-start">
                   <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
                     <a href={`${import.meta.env.BASE_URL}${siteConfig.thesisPdfUrl}`} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
@@ -167,7 +172,7 @@ const IndexPage = () => {
                 </div>
               </div>
               
-              <div className="hidden lg:flex justify-center animate-fade-in delay-300">
+              <div className="flex justify-center animate-fade-in delay-300">
                 <div className="relative group">
                   <Card className="w-96 h-[500px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
@@ -493,3 +498,5 @@ const IndexPage = () => {
     </>;
 };
 export default IndexPage;
+
+
