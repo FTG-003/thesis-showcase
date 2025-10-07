@@ -1,44 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, BookOpen, Users, Lightbulb } from 'lucide-react';
-
-const timelineItems = [
-  {
-    date: "January 2025",
-    title: "Research Initiation",
-    description: "Began investigating the intersection of evolutionary biology and educational theory.",
-    icon: Lightbulb,
-    status: "completed"
-  },
-  {
-    date: "March 2025",
-    title: "Theoretical Framework",
-    description: "Developed the core concepts of Cognitive Intraspecific Selection in educational contexts.",
-    icon: BookOpen,
-    status: "completed"
-  },
-  {
-    date: "June 2025",
-    title: "Pyragogy Methodology",
-    description: "Formalized the Pyragogy approach with Cognitive Reciprocation and Ritualized Conflict.",
-    icon: Users,
-    status: "completed"
-  },
-  {
-    date: "September 2025",
-    title: "Pilot Implementation",
-    description: "Launched IdeoEvo pilot project to test practical applications of the framework.",
-    icon: Calendar,
-    status: "in-progress"
-  },
-  {
-    date: "September 2025",
-    title: "Publication & Dissemination",
-    description: "Publishing findings and expanding the research community.",
-    icon: BookOpen,
-    status: "upcoming"
-  }
-];
+import { timelineItems } from '@/components/ui/content';
 
 export const Timeline = () => {
   return (

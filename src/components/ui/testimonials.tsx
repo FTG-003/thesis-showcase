@@ -1,27 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Quote, Star } from 'lucide-react';
-
-const testimonials = [
-  {
-    quote: "This work fundamentally challenges how we think about educational competition and collaboration.",
-    author: "Expert in Educational Psychology",
-    title: "Review from a leading academic journal",
-    rating: 5
-  },
-  {
-    quote: "The framework offers a novel perspective on collective intelligence in learning environments.",
-    author: "Cognitive Science Researcher",
-    title: "Commentary from a research symposium",
-    rating: 5
-  },
-  {
-    quote: "The Pyragogy methodology presents a practical solution to a longstanding educational challenge.",
-    author: "Educational Innovation Analyst",
-    title: "Excerpt from a technology review",
-    rating: 5
-  }
-];
+import { testimonials } from '@/components/ui/content';
 
 export const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,8 +9,7 @@ export const Testimonials = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
+    }, 5000); // Aggiungo un intervallo di 5 secondi
     return () => clearInterval(interval);
   }, []);
 
