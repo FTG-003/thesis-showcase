@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fabrizioterzi.org/thesis-showcase/sitemap.xml
+Sitemap: https://fabrizioterzi.github.io/pyragogy-research-showcase/sitemap.xml
