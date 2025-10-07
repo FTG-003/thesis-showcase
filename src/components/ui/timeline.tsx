@@ -32,7 +32,7 @@ const timelineItems = [
     status: "in-progress"
   },
   {
-    date: "December 2025",
+    date: "September 2025",
     title: "Publication & Dissemination",
     description: "Publishing findings and expanding the research community.",
     icon: BookOpen,

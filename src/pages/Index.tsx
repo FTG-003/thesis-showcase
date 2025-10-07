@@ -13,8 +13,10 @@ import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
-import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users as Users2, TrendingUp, Brain, Zap, Menu } from 'lucide-react';
+import { Share2, Download, ExternalLink, Search, BookOpen, Users, Target, Lightbulb, Users as Users2, TrendingUp, Brain, Zap, Menu, Mail } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
+import logoFull from '/logo-full.png';
+
 const IndexPage = () => {
   const [activeSection, setActiveSection] = useState('');
   const pdfUrl = `${import.meta.env.BASE_URL}Cognitive_Intraspecific_Selection_EN.pdf`;
@@ -100,7 +102,7 @@ const IndexPage = () => {
       <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md border-b shadow-lg z-40 transition-all duration-300">
         <nav className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 group">
-        <img src="/logo-full.png" alt="Pyragogy.org" className="h-10 w-auto transition-all duration-300 group-hover:scale-105" />
+        <img src={logoFull} alt="Pyragogy.org" className="h-10 w-auto transition-all duration-300 group-hover:scale-105" />
             <span className="hidden sm:block text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Pyragogy Research
             </span>
@@ -197,7 +199,7 @@ const IndexPage = () => {
                 </div>
               </div>
               
-              <div className="hidden lg:flex justify-center lg:justify-end animate-fade-in delay-300">
+              <div className="hidden lg:flex justify-center animate-fade-in delay-300">
                 <div className="relative group">
                   <Card className="w-96 h-[500px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
@@ -205,7 +207,7 @@ const IndexPage = () => {
                       {/* Logo e Header */}
                       <div className="space-y-6">
                         <div className="flex items-center justify-center mb-6">
-                          <img src="/logo-full.png" alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
+                          <img src={logoFull} alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
                         </div>
                         
                         <div className="text-center space-y-4">
@@ -322,7 +324,7 @@ const IndexPage = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-background to-muted/20" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-[3px]">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
                 Research Journey
               </h2>
               <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -382,15 +384,23 @@ const IndexPage = () => {
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-[3px]">
-                Academic Recognition
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
+                Join the Conversation
               </h2>
               <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Insights from leading researchers and educators worldwide
+                Your feedback is valuable. Send a comment, a critique, or an idea for future collaborations.
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
             </div>
-            <Testimonials />
+            
+            <div className="text-center animate-fade-in-up delay-300">
+              <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
+                <a href="mailto:info@pyragogy.org?subject=Feedback on Cognitive Intraspecific Selection Thesis">
+                  <Mail className="w-5 h-5 mr-3 group-hover:animate-bounce" />
+                  Share Your Feedback
+                </a>
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -444,8 +454,8 @@ const IndexPage = () => {
                   Join the growing community of researchers exploring cognitive selection in education.
                 </p>
                 <Button asChild variant="outline" className="w-full glass hover:bg-accent/5 transition-all duration-300">
-                  <a href="https://docs.pyragogy.org/core/why/" target="_blank" rel="noopener">
-                    <Users className="w-4 h-4 mr-2" />
+                  <a href="https://docs.pyragogy.org/core/why/" target="_blank" rel="noopener" className="flex items-center justify-center">
+                    <Users className="w-4 h-4 mr-3" />
                     Join Community
                   </a>
                 </Button>
@@ -478,7 +488,7 @@ const IndexPage = () => {
           <div className="container mx-auto px-4">
             <div className="text-center space-y-8">
             <div className="flex items-center justify-center gap-4 mb-8">
-            <img src="/logo-full.png" alt="Pyragogy.org" className="h-12 w-auto" />
+            <img src={logoFull} alt="Pyragogy.org" className="h-12 w-auto" />
                 <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
               
@@ -495,6 +505,12 @@ const IndexPage = () => {
                   <a href={pdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download Thesis
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+                  <a href="mailto:info@pyragogy.org">
+                    <Mail className="w-4 h-4 mr-2" />
+                    Contact Us
                   </a>
                 </Button>
               </div>

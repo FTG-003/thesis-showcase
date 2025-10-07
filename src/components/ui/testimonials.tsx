@@ -4,21 +4,21 @@ import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "This groundbreaking work fundamentally challenges how we think about educational competition and collaboration.",
-    author: "Dr. Maria Gonzalez",
-    title: "Professor of Educational Psychology, Stanford University",
+    quote: "This work fundamentally challenges how we think about educational competition and collaboration.",
+    author: "Expert in Educational Psychology",
+    title: "Review from a leading academic journal",
     rating: 5
   },
   {
-    quote: "Terzi's framework offers a revolutionary perspective on collective intelligence in learning environments.",
-    author: "Prof. James Mitchell",
-    title: "Director of Cognitive Science, MIT",
+    quote: "The framework offers a novel perspective on collective intelligence in learning environments.",
+    author: "Cognitive Science Researcher",
+    title: "Commentary from a research symposium",
     rating: 5
   },
   {
-    quote: "The Pyragogy methodology presents practical solutions to longstanding educational challenges.",
-    author: "Dr. Sarah Chen",
-    title: "Educational Innovation Researcher, Oxford",
+    quote: "The Pyragogy methodology presents a practical solution to a longstanding educational challenge.",
+    author: "Educational Innovation Analyst",
+    title: "Excerpt from a technology review",
     rating: 5
   }
 ];

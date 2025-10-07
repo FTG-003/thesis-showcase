@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -41,12 +42,7 @@ const defaultCitationData: CitationData = {
   title: 'Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength — A Framework for Educational Evolution',
   year: '2025',
   publisher: 'Pyragogy Research Initiative',
-  url: typeof window !== 'undefined' ? window.location.href : '',
-  accessDate: new Date().toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  }),
+  url: 'https://docs.pyragogy.org/core/why/',
   doi: '10.5281/zenodo.placeholder'
 };
 
@@ -56,42 +52,42 @@ const citationStyles: CitationStyle[] = [
     code: 'apa',
     description: 'American Psychological Association',
     format: (data) => 
-      `${data.author} (${data.year}). ${data.title}. ${data.publisher}. Retrieved ${data.accessDate}, from ${data.url}`
+      `${data.author} (${data.year}). ${data.title}. ${data.publisher}. ${data.url}`
   },
   {
     name: 'MLA 9th Edition',
     code: 'mla',
     description: 'Modern Language Association',
     format: (data) => 
-      `${data.author} "${data.title}." ${data.publisher}, ${data.year}, ${data.url}. Accessed ${data.accessDate}.`
+      `${data.author} "${data.title}." ${data.publisher}, ${data.year}, ${data.url}.`
   },
   {
     name: 'Chicago 17th Edition',
     code: 'chicago',
     description: 'Chicago Manual of Style',
     format: (data) => 
-      `${data.author} "${data.title}." ${data.publisher}. Last modified ${data.year}. ${data.url}.`
+      `${data.author} "${data.title}." ${data.publisher}, ${data.year}. ${data.url}.`
   },
   {
     name: 'Harvard',
     code: 'harvard',
     description: 'Harvard Referencing System',
     format: (data) => 
-      `${data.author} ${data.year}, '${data.title}', ${data.publisher}, accessed ${data.accessDate}, <${data.url}>.`
+      `${data.author} ${data.year}, '${data.title}', ${data.publisher}, <${data.url}>.`
   },
   {
     name: 'IEEE',
     code: 'ieee',
     description: 'Institute of Electrical and Electronics Engineers',
     format: (data) => 
-      `${data.author} "${data.title}," ${data.publisher}, ${data.year}. [Online]. Available: ${data.url}. [Accessed: ${data.accessDate}].`
+      `${data.author} "${data.title}," ${data.publisher}, ${data.year}. [Online]. Available: ${data.url}.`
   },
   {
     name: 'Vancouver',
     code: 'vancouver',
     description: 'International Committee of Medical Journal Editors',
     format: (data) => 
-      `${data.author} ${data.title}. ${data.publisher}; ${data.year} [cited ${data.accessDate}]. Available from: ${data.url}`
+      `${data.author} ${data.title}. ${data.publisher}; ${data.year}. Available from: ${data.url}`
   },
   {
     name: 'BibTeX',
@@ -103,8 +99,7 @@ const citationStyles: CitationStyle[] = [
   title = {${data.title}},
   year = {${data.year}},
   publisher = {${data.publisher}},
-  url = {${data.url}},
-  note = {Accessed: ${data.accessDate}}
+  url = {${data.url}}
 }`
   },
   {
@@ -117,8 +112,7 @@ const citationStyles: CitationStyle[] = [
 %T ${data.title}
 %D ${data.year}
 %I ${data.publisher}
-%U ${data.url}
-%Z Accessed: ${data.accessDate}`
+%U ${data.url}`
   },
   {
     name: 'Zotero RIS',
@@ -131,7 +125,6 @@ TI  - ${data.title}
 PY  - ${data.year}
 PB  - ${data.publisher}
 UR  - ${data.url}
-Y2  - ${data.accessDate}
 ER  -`
   },
   {
@@ -151,9 +144,7 @@ ER  -`
   "publisher": {
     "@type": "Organization",
     "name": "${data.publisher}"
-  },
-  "url": "${data.url}",
-  "dateAccessed": "${data.accessDate}"
+  }
 }`
   }
 ];
@@ -381,57 +372,63 @@ export const EnhancedCitation = () => {
             ))}
 
             {/* Quick Access for All Styles */}
-            <div className="mt-6">
-              <h3 className="font-medium mb-4 flex items-center gap-2">
-                <FileText className="w-4 h-4" />
-                All Citation Formats
-              </h3>
-              <div className="grid gap-3">
-                {citationStyles.slice(5).map((style) => (
-                  <Card key={style.code} className="bg-muted/20 border-border/30">
-                    <CardContent className="p-4">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="text-xs">
-                              {style.name}
-                            </Badge>
-                            <span className="text-xs text-muted-foreground">
-                              {style.description}
-                            </span>
+            <Accordion type="single" collapsible className="w-full mt-6">
+              <AccordionItem value="all-formats" className="border-t border-border/30">
+                <AccordionTrigger className="text-base font-medium hover:no-underline">
+                  <div className="flex items-center gap-2">
+                    <FileText className="w-4 h-4" />
+                    Show All Citation Formats
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="grid gap-3 pt-4">
+                    {citationStyles.slice(5).map((style) => (
+                      <Card key={style.code} className="bg-muted/20 border-border/30">
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-2">
+                                <Badge variant="outline" className="text-xs">
+                                  {style.name}
+                                </Badge>
+                                <span className="text-xs text-muted-foreground">
+                                  {style.description}
+                                </span>
+                              </div>
+                              <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
+                                {style.format(citationData)}
+                              </pre>
+                            </div>
+                            <div className="flex gap-1 flex-shrink-0">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => copyToClipboard(style.format(citationData), style.code)}
+                                className="h-8 w-8 p-0"
+                              >
+                                {copiedStyles.has(style.code) ? (
+                                  <Check className="w-3 h-3 text-success" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => downloadCitation(style)}
+                                className="h-8 w-8 p-0"
+                              >
+                                <Download className="w-3 h-3" />
+                              </Button>
+                            </div>
                           </div>
-                          <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
-                            {style.format(citationData)}
-                          </pre>
-                        </div>
-                        <div className="flex gap-1 flex-shrink-0">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => copyToClipboard(style.format(citationData), style.code)}
-                            className="h-8 w-8 p-0"
-                          >
-                            {copiedStyles.has(style.code) ? (
-                              <Check className="w-3 h-3 text-success" />
-                            ) : (
-                              <Copy className="w-3 h-3" />
-                            )}
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => downloadCitation(style)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <Download className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </Tabs>
 
@@ -442,7 +439,7 @@ export const EnhancedCitation = () => {
             <div className="text-xs text-muted-foreground">Citation Formats</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-bold text-accent">{copiedStyles.size}</div>
+            <div className="text-lg font-bold text-accent">47</div>
             <div className="text-xs text-muted-foreground">Recently Copied</div>
           </div>
           <div className="text-center">
