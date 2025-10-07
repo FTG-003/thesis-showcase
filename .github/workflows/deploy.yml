@@ -5,6 +5,11 @@ on:
     branches:
       - main # O la tua branch principale
 
+# Aggiungi questo blocco per concedere i permessi di scrittura al workflow.
+# È il passaggio fondamentale per risolvere l'errore 403 e la pagina bianca.
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
