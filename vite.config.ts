@@ -5,7 +5,7 @@ import path from "path"
 // https://vitejs.dev/config/
 export default defineConfig({
   // Aggiungi questa riga per correggere i percorsi su GitHub Pages
-  base: '/pyragogy-research-showcase/', 
+  base: '/', 
   plugins: [react()],
   resolve: {
     alias: {
