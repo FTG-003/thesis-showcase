@@ -19,6 +19,14 @@ import { toast } from '@/components/ui/sonner';
 import logoFull from '/logo-full.png';
 
 const IndexPage = () => {
+  const navLinks = [
+    { id: 'abstract', label: 'Abstract' },
+    { id: 'timeline', label: 'Timeline' },
+    { id: 'key-points', label: 'Key Points' },
+    { id: 'testimonials', label: 'Join' },
+    { id: 'resources', label: 'Resources' },
+  ];
+
   const [activeSection, setActiveSection] = useState('');
   useEffect(() => {
     const observerOptions = {
@@ -80,13 +88,13 @@ const IndexPage = () => {
           <div className="flex items-center gap-2 md:gap-4">
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-4 lg:gap-6">
-              {['abstract', 'timeline', 'key-points', 'testimonials', 'resources'].map(id => (
+              {navLinks.map(link => (
                 <button
-                  key={id}
-                  onClick={() => scrollToSection(id)}
-                  className={`nav-link relative font-medium text-sm capitalize ${activeSection === id ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === id ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`nav-link relative font-medium text-sm capitalize ${activeSection === link.id ? 'text-primary' : 'text-muted-foreground hover:text-foreground'} transition-colors duration-200 after:content-[""] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-center after:transition-transform after:duration-300 ${activeSection === link.id ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
                 >
-                  {id.replace('-', ' ')}
+                  {link.label}
                 </button>
               ))}
             </nav>
@@ -104,13 +112,13 @@ const IndexPage = () => {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-[280px] glass">
                   <nav className="flex flex-col gap-6 pt-10">
-                    {['abstract', 'timeline', 'key-points', 'testimonials', 'resources'].map(id => (
-                      <SheetClose key={id} asChild>
+                    {navLinks.map(link => (
+                      <SheetClose key={link.id} asChild>
                         <button
-                          onClick={() => scrollToSection(id)}
-                          className={`text-lg font-medium capitalize ${activeSection === id ? 'text-primary' : 'text-foreground'}`}
+                          onClick={() => scrollToSection(link.id)}
+                          className={`text-lg font-medium capitalize ${activeSection === link.id ? 'text-primary' : 'text-foreground'}`}
                         >
-                          {id.replace('-', ' ')}
+                          {link.label}
                         </button>
                       </SheetClose>
                     ))}
@@ -137,17 +145,8 @@ const IndexPage = () => {
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="space-y-6 animate-fade-in-up">
-            <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="space-y-8 animate-fade-in-up text-center lg:text-left">
-                <div className="flex gap-3">
-                  
-                  
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent px-0 py-px animate-reveal">
-                  {siteConfig.thesisTitle}
-                  <span className="block text-3xl sm:text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
-                </h1>
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent px-0 py-px animate-reveal">{siteConfig.thesisTitle}</h1>
                 
                 <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength — 
                   <span className="block">
@@ -187,9 +186,6 @@ const IndexPage = () => {
                           <h2 className="text-3xl font-serif font-bold text-white leading-tight">
                             {siteConfig.thesisTitle}
                           </h2>
-                          <p className="text-xl text-white/90 font-light italic">
-                            in Education
-                          </p>
                           <div className="w-20 h-0.5 bg-white/30 mx-auto rounded-full" />
                           <p className="text-sm text-white/80 uppercase tracking-wider font-medium">
                             Academic Thesis
@@ -289,7 +285,7 @@ const IndexPage = () => {
                 </div>
               </Card>
             </div>
-          </div>
+            </div>
         </section>
 
         {/* Timeline Section */}
@@ -498,5 +494,3 @@ const IndexPage = () => {
     </>;
 };
 export default IndexPage;
-
-

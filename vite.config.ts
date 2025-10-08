@@ -4,8 +4,8 @@ import path from "path"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Aggiungi questa riga per correggere i percorsi su GitHub Pages
-  base: '/', 
+  // Imposta il base path per il deploy su GitHub Pages
+  base: '/thesis-showcase/', 
   plugins: [react()],
   resolve: {
     alias: {

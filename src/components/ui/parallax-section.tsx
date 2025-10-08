@@ -11,22 +11,29 @@ export const ParallaxSection = ({ children, speed = 0.5, className = '' }: Paral
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let animationFrameId: number;
+
     const handleScroll = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        const elementTop = rect.top + window.scrollY;
-        const scrolled = window.scrollY;
-        const rate = scrolled * -speed;
-        
-        // Only apply parallax when element is in viewport
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          setOffsetY(rate);
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const scrolled = window.scrollY;
+          const rate = scrolled * -speed;
+
+          // Only apply parallax when element is in viewport
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            setOffsetY(rate);
+          }
         }
-      }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [speed]);
 
   return (

@@ -7,7 +7,7 @@ export const siteConfig = {
   publisher: 'Pyragogy Research Initiative',
   thesisTitle: 'Cognitive Intraspecific Selection in Education',
   thesisSubtitle: 'From Individualism to Collective Strength — A Framework for Educational Evolution',
-  thesisPdfUrl: 'Cognitive_Intraspecific_Selection_EN..pdf', // allineato al file in /public
+  thesisPdfUrl: 'Cognitive_Intraspecific_Selection_EN.pdf', // allineato al file in /public
   contactEmail: 'info@pyragogy.org',
   social: {
     twitter: '@Pyragogy',

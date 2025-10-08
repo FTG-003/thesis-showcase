@@ -19,7 +19,8 @@ Attraverso le metriche proposte di **Educational Quality Intelligence (EQI)** e 
 ## Accedi alla Ricerca
 
 *   **Sito Web Interattivo**
-*   **Scarica la Tesi Completa (PDF)**
+*   **[Sito Web Interattivo](https://blubar.github.io/thesis-showcase/)**
+*   **[Scarica la Tesi Completa (PDF)](https://blubar.github.io/thesis-showcase/Cognitive_Intraspecific_Selection_EN.pdf)**
 
 ## Autore
 
