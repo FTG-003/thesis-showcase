@@ -14,7 +14,7 @@ import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
-import { Download, ExternalLink, BookOpen, Users, Menu, Mail } from 'lucide-react';
+import { Download, ExternalLink, BookOpen, Users, Menu, Mail, FileText } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
 import logoFull from '/logo-full.png';
 
@@ -165,6 +165,12 @@ const IndexPage = () => {
                     <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
                       Download Full Thesis
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="glass hover:bg-primary/10 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold border-2">
+                    <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener">
+                      <FileText className="w-5 h-5 mr-2 group-hover:rotate-12 transition-all duration-300" />
+                      Read Online
                     </a>
                   </Button>
                   <SocialSharing className="px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold" />
@@ -404,12 +410,20 @@ const IndexPage = () => {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Complete academic thesis with comprehensive analysis and practical applications.
                 </p>
-                <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
-                  <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
-                    <Download className="w-4 h-4 mr-2" />
-                    Download PDF
-                  </a>
-                </Button>
+                <div className="flex flex-col gap-3">
+                  <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
+                    <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                      <Download className="w-4 h-4 mr-2" />
+                      Download PDF
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300">
+                    <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener">
+                      <FileText className="w-4 h-4 mr-2" />
+                      Read Online
+                    </a>
+                  </Button>
+                </div>
               </Card>
               
               <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
@@ -463,7 +477,7 @@ const IndexPage = () => {
               
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">Advancing educational theory through research in cognitive selection and collective intelligence building.</p>
               
-              <div className="flex justify-center gap-6">
+              <div className="flex flex-wrap justify-center gap-4">
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
                   <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener">
                     <ExternalLink className="w-4 h-4 mr-2" />
@@ -474,6 +488,12 @@ const IndexPage = () => {
                   <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download Thesis
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+                  <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener">
+                    <FileText className="w-4 h-4 mr-2" />
+                    Read Online
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
