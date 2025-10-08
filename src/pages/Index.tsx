@@ -16,7 +16,7 @@ import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
 import { Download, ExternalLink, BookOpen, Users, Menu, Mail } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
-import logoFull from '/logo-full.png';
+import logoFull from '@/assets/logo-full.png';
 
 const IndexPage = () => {
   const navLinks = [
@@ -162,7 +162,7 @@ const IndexPage = () => {
                 
                 <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4 justify-center lg:justify-start">
                   <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
-                    <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                    <a href={`${import.meta.env.BASE_URL}${siteConfig.thesisPdfUrl}`} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
                       Download Full Thesis
                     </a>
@@ -405,7 +405,7 @@ const IndexPage = () => {
                   Complete academic thesis with comprehensive analysis and practical applications.
                 </p>
                 <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
-                  <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                  <a href={`${import.meta.env.BASE_URL}${siteConfig.thesisPdfUrl}`} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download PDF
                   </a>
@@ -471,7 +471,7 @@ const IndexPage = () => {
                   </a>
                 </Button>
                 <Button asChild variant="outline" className="glass hover:bg-primary/5">
-                  <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
+                  <a href={`${import.meta.env.BASE_URL}${siteConfig.thesisPdfUrl}`} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download Thesis
                   </a>
