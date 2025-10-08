@@ -8,9 +8,9 @@ This research presents an innovative transposition of biological intraspecific s
 
 By treating ideas as the fundamental units of selection rather than individuals, the thesis explores four critical isomorphisms:
 1.  **Variazione** negli approcci educativi.
-2.  **Selezione** attraverso la competizione epistemica.
-3.  **Ereditarietà** di modelli pedagogici di successo.
-4.  **Adattamento** agli ambienti di apprendimento.
+2.  **Selection** through epistemic competition.
+3.  **Heritability** of successful pedagogical models.
+4.  **Adaptation** to learning environments.
 
 The framework introduces **Pyragogy**, a novel approach that integrates Cognitive Reciprocation, Ritualization of Conflict, and non-agentive AI facilitation for building collective intelligence.
 
