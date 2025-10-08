@@ -1,17 +1,15 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 type ThemeProviderProps = {
-  children: React.ReactNode
-  defaultTheme?: "light" | "dark" | "system"
-  storageKey?: string
-}
+	children: React.ReactNode;
+	defaultTheme?: "light" | "dark" | "system";
+	storageKey?: string;
+};
 
-export function ThemeProvider({
-  children,
-  ...props
-}: ThemeProviderProps) {
-  // next-themes is not directly used here to avoid client/server mismatch in some setups.
-  // This simplified provider will work for the client-side rendering approach with Vite.
-  // For more complex SSR scenarios, you would use the 'next-themes' package directly.
-  return <div {...props}>{children}</div>
+export function ThemeProvider({ children, defaultTheme = "system", storageKey = "vite-ui-theme" }: ThemeProviderProps) {
+	return (
+		<NextThemesProvider attribute="class" defaultTheme={defaultTheme} storageKey={storageKey}>
+			{children}
+		</NextThemesProvider>
+	);
 }
