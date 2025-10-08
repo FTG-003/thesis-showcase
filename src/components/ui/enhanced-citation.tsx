@@ -43,6 +43,7 @@ const defaultCitationData: CitationData = {
   year: '2025',
   publisher: 'Pyragogy Research Initiative',
   url: 'https://docs.pyragogy.org/core/why/',
+  accessDate: new Date().toISOString().split('T')[0],
   doi: '10.5281/zenodo.placeholder'
 };
 
@@ -158,8 +159,8 @@ export const EnhancedCitation = () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedStyles(prev => new Set([...prev, style]));
-      toast({
-        title: "Citation Copied!", description: `${citationStyles.find(s => s.code === style)?.name} citation copied to clipboard.`
+      toast("Citation Copied!", {
+        description: `${citationStyles.find(s => s.code === style)?.name} citation copied to clipboard.`
       });
       
       setTimeout(() => {
@@ -186,8 +187,7 @@ export const EnhancedCitation = () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    toast({
-      title: "Citation Downloaded!",
+    toast("Citation Downloaded!", {
       description: `${style.name} citation saved as text file.`
     });
   };
