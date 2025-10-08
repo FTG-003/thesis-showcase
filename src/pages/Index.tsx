@@ -125,9 +125,9 @@ const IndexPage = () => {
         </nav>
       </header>
 
-      <main id="main" className="pt-16">
+      <main id="main" className="pt-14 sm:pt-16">
         {/* Hero Section */}
-        <section className="relative pt-20 pb-32 overflow-hidden bg-gradient-hero">
+        <section className="relative pt-14 sm:pt-16 lg:pt-20 pb-24 lg:pb-32 overflow-hidden bg-gradient-hero">
           {/* Animated background elements */}
           <ParallaxSection speed={0.3} className="absolute inset-0 mx-0">
             <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -137,13 +137,9 @@ const IndexPage = () => {
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="space-y-8 animate-fade-in-up">
-                <div className="flex gap-3">
-                  
-                  
-                </div>
+              <div className="space-y-6 sm:space-y-8 animate-fade-in-up">
                 
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent mx-[2px] px-0 py-px animate-reveal">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent px-0 py-px animate-reveal">
                   {siteConfig.thesisTitle}
                   <span className="block text-3xl sm:text-4xl lg:text-5xl mt-2 text-foreground font-serif italic">in Education</span>
                 </h1>
