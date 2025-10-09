@@ -135,7 +135,7 @@ const IndexPage = () => {
 
       <main id="main" className="pt-16">
         {/* Hero Section */}
-        <section className="relative pt-10 pb-20 overflow-hidden bg-gradient-hero">
+        <section className="relative pt-8 sm:pt-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-hero">
           {/* Animated background elements */}
           <ParallaxSection speed={0.3} className="absolute inset-0 mx-0">
             <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -144,78 +144,78 @@ const IndexPage = () => {
           </ParallaxSection>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <div className="space-y-8 animate-fade-in-up text-center lg:text-left">
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent px-0 py-px animate-reveal">{siteConfig.thesisTitle}</h1>
-                
-                <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength — 
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+              <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center lg:text-left px-4 sm:px-0">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-reveal">{siteConfig.thesisTitle}</h1>
+
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength —
                   <span className="block">
                     {siteConfig.thesisSubtitle.split('— ')[1]}
                   </span></p>
-                
-                <div className="space-y-3 p-4 glass rounded-2xl inline-block">
-                  <p className="text-xl font-serif font-semibold">{siteConfig.author}</p>
-                  <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener" className="text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:underline decoration-primary/30">
+
+                <div className="space-y-3 p-4 glass rounded-2xl inline-block w-full sm:w-auto">
+                  <p className="text-lg sm:text-xl font-serif font-semibold">{siteConfig.author}</p>
+                  <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener" className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:underline decoration-primary/30 block">
                     ORCID: {siteConfig.orcid} →
                   </a>
                 </div>
-                
-                <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-4 justify-center lg:justify-start">
-                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
+
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 pt-4 justify-center lg:justify-start">
+                  <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold w-full sm:w-auto">
                     <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
                       <Download className="w-5 h-5 mr-2 group-hover:animate-bounce transition-all duration-300" />
                       Download Full Thesis
                     </a>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="glass hover:bg-primary/10 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold border-2">
+                  <Button asChild size="lg" variant="outline" className="glass hover:bg-primary/10 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold border-2 w-full sm:w-auto">
                     <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener">
                       <FileText className="w-5 h-5 mr-2 group-hover:rotate-12 transition-all duration-300" />
                       Read Online
                     </a>
                   </Button>
-                  <SocialSharing className="px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold" />
+                  <SocialSharing className="px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold w-full sm:w-auto" />
                 </div>
               </div>
               
               <div className="flex justify-center animate-fade-in delay-300">
                 <div className="relative group">
-                  <Card className="w-96 h-[500px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
+                  <Card className="w-full max-w-[340px] sm:max-w-md lg:max-w-[384px] min-h-[480px] glass relative overflow-hidden transform group-hover:scale-105 transition-all duration-500 shadow-strong hover:shadow-glow animate-glow rounded-3xl">
                     <div className="absolute inset-0 bg-gradient-primary opacity-20" />
-                    <CardContent className="h-full flex flex-col justify-between p-10 relative z-10 bg-gradient-to-br from-primary via-primary-dark to-accent rounded-3xl">
+                    <CardContent className="h-full flex flex-col justify-start gap-8 p-8 sm:p-10 relative z-10 bg-gradient-to-br from-primary via-primary-dark to-accent rounded-3xl">
                       {/* Logo e Header */}
                       <div className="space-y-6">
-                        <div className="flex items-center justify-center mb-6">
-                          <img src={logoFull} alt="Pyragogy.org" className="h-16 w-auto filter brightness-0 invert" />
+                        <div className="flex items-center justify-center mb-2">
+                          <img src={logoFull} alt="Pyragogy.org" className="h-12 sm:h-16 w-auto filter brightness-0 invert" />
                         </div>
-                        
+
                         <div className="text-center space-y-4">
-                          <h2 className="text-3xl font-serif font-bold text-white leading-tight">
+                          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white leading-tight">
                             {siteConfig.thesisTitle}
                           </h2>
                           <div className="w-20 h-0.5 bg-white/30 mx-auto rounded-full" />
-                          <p className="text-sm text-white/80 uppercase tracking-wider font-medium">
+                          <p className="text-xs sm:text-sm text-white/80 uppercase tracking-wider font-medium">
                             Academic Thesis
                           </p>
                         </div>
                       </div>
-                      
+
                       {/* Footer con autore */}
-                      <div className="space-y-4 text-center">
+                      <div className="space-y-4 text-center mt-auto">
                         <div className="space-y-1">
-                          <p className="text-lg font-semibold text-white">{siteConfig.author}</p>
-                          <p className="text-sm text-white/80">{siteConfig.publisher}</p>
+                          <p className="text-base sm:text-lg font-semibold text-white">{siteConfig.author}</p>
+                          <p className="text-xs sm:text-sm text-white/80">{siteConfig.publisher}</p>
                         </div>
-                        
-                        <div className="flex justify-center gap-3 mt-4">
+
+                        <div className="flex justify-center gap-3">
                           <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse" />
                           <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse delay-200" />
                           <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse delay-400" />
                         </div>
-                        
-                        <div className="text-xs text-white/60 mt-4">{siteConfig.publicationYear} • Creative Commons 4.0</div>
+
+                        <div className="text-xs text-white/60">{siteConfig.publicationYear} • Creative Commons 4.0</div>
                       </div>
                     </CardContent>
-                    
+
                     {/* Floating elements */}
                     <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/20 rounded-full blur-xl animate-float" />
                     <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-primary/20 rounded-full blur-xl animate-float delay-1000" />
@@ -227,64 +227,64 @@ const IndexPage = () => {
         </section>
 
         {/* Abstract Section */}
-        <section id="abstract" className="py-32 relative overflow-hidden">
+        <section id="abstract" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-card" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-16 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Executive Summary
               </h2>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
             </div>
             
-            <div className="max-w-5xl mx-auto space-y-8">
-                <Card className="glass p-6 sm:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
-                  <p className="text-xl sm:text-2xl lg:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-8">
-                    This thesis presents a groundbreaking transposition of biological <GlossaryTooltip term="intraspecific selection">intraspecific selection</GlossaryTooltip> to educational contexts, 
+            <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8 px-4">
+                <Card className="glass p-6 sm:p-8 lg:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
+                  <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-6 sm:mb-8">
+                    This thesis presents a groundbreaking transposition of biological <GlossaryTooltip term="intraspecific selection">intraspecific selection</GlossaryTooltip> to educational contexts,
                     reimagining how ideas compete, evolve, and strengthen <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip>.
                   </p>
                 </Card>
-              
-              <div className="grid lg:grid-cols-2 gap-8">
-                <Card className="glass p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right">
+
+              <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
+                <Card className="glass p-6 sm:p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right">
                   <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
                     <div className="w-12 h-12 bg-gradient-primary rounded-2xl flex items-center justify-center text-white text-xl flex-shrink-0">
                       🔬
                     </div>
-                    <h3 className="text-xl font-serif font-semibold text-primary">Core Framework</h3>
+                    <h3 className="text-lg sm:text-xl font-serif font-semibold text-primary">Core Framework</h3>
                   </div>
-                  <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-                    By treating ideas as the fundamental unit of selection rather than individuals, we explore four critical 
-                    isomorphisms: variation in educational approaches, selection through <GlossaryTooltip term="epistemic competition">epistemic competition</GlossaryTooltip>, 
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground">
+                    By treating ideas as the fundamental unit of selection rather than individuals, we explore four critical
+                    isomorphisms: variation in educational approaches, selection through <GlossaryTooltip term="epistemic competition">epistemic competition</GlossaryTooltip>,
                     heritability of successful pedagogical patterns, and adaptation to learning environments.
                   </p>
                 </Card>
-                
-                <Card className="glass p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right delay-200">
+
+                <Card className="glass p-6 sm:p-8 rounded-3xl shadow-medium hover:shadow-strong transition-all duration-500 animate-slide-in-right delay-200">
                   <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
                     <div className="w-12 h-12 bg-gradient-accent rounded-2xl flex items-center justify-center text-white text-xl flex-shrink-0">
                       🎯
                     </div>
-                    <h3 className="text-xl font-serif font-semibold text-accent">Pyragogy Methodology</h3>
+                    <h3 className="text-lg sm:text-xl font-serif font-semibold text-accent">Pyragogy Methodology</h3>
                   </div>
-                  <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-                    The framework introduces <GlossaryTooltip term="pyragogy">Pyragogy</GlossaryTooltip>—a novel approach integrating <GlossaryTooltip term="cognitive reciprocation">Cognitive Reciprocation</GlossaryTooltip>, 
+                  <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground">
+                    The framework introduces <GlossaryTooltip term="pyragogy">Pyragogy</GlossaryTooltip>—a novel approach integrating <GlossaryTooltip term="cognitive reciprocation">Cognitive Reciprocation</GlossaryTooltip>,
                     <GlossaryTooltip term="ritualization of conflict">Ritualization of Conflict</GlossaryTooltip>, and non-agentive AI facilitation for <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip> building.
                   </p>
                 </Card>
               </div>
-              
-              <Card className="glass p-6 sm:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-fade-in-up delay-400">
+
+              <Card className="glass p-6 sm:p-8 lg:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-fade-in-up delay-400">
                 <div className="flex flex-col sm:flex-row items-start gap-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-success to-warning rounded-3xl flex items-center justify-center text-white text-2xl flex-shrink-0">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-success to-warning rounded-3xl flex items-center justify-center text-white text-xl sm:text-2xl flex-shrink-0">
                     📊
                   </div>
                   <div>
-                    <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">Impact & Implementation</h3>
-                    <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-                      Through proposed <GlossaryTooltip term="educational quality intelligence">Educational Quality Intelligence (EQI)</GlossaryTooltip> metrics and the innovative <GlossaryTooltip term="ideoevo">IdeoEvo</GlossaryTooltip> pilot project, 
-                      this research offers practical pathways from traditional individualistic education toward 
-                      <GlossaryTooltip term="collective intelligence">collective cognitive strength</GlossaryTooltip>. The implications extend beyond pedagogy to organizational learning, 
+                    <h3 className="text-xl sm:text-2xl font-serif font-semibold text-foreground mb-3 sm:mb-4">Impact & Implementation</h3>
+                    <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-muted-foreground">
+                      Through proposed <GlossaryTooltip term="educational quality intelligence">Educational Quality Intelligence (EQI)</GlossaryTooltip> metrics and the innovative <GlossaryTooltip term="ideoevo">IdeoEvo</GlossaryTooltip> pilot project,
+                      this research offers practical pathways from traditional individualistic education toward
+                      <GlossaryTooltip term="collective intelligence">collective cognitive strength</GlossaryTooltip>. The implications extend beyond pedagogy to organizational learning,
                       policy development, and the future of human-AI collaborative intelligence.
                     </p>
                   </div>
@@ -295,54 +295,54 @@ const IndexPage = () => {
         </section>
 
         {/* Timeline Section */}
-        <section id="timeline" className="py-32 relative overflow-hidden">
+        <section id="timeline" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-background to-muted/20" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
                 Research Journey
               </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
                 The evolution of revolutionary educational theory from concept to implementation
               </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
+              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-4 sm:mt-6" />
             </div>
             <Timeline />
           </div>
         </section>
 
         {/* Key Points Section */}
-        <section id="key-points" className="py-32 relative overflow-hidden">
+        <section id="key-points" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Key Contributions
               </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
                 Revolutionary insights that transform how we understand educational evolution and collective intelligence
               </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
+              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-4 sm:mt-6" />
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {keyPointsData.map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-8 animate-scale-in border-0" style={{
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto px-4">
+              {keyPointsData.map((point, index) => <Card key={index} className="group glass h-full hover:shadow-glow transition-all duration-500 rounded-3xl p-6 sm:p-8 animate-scale-in border-0" style={{
                 animationDelay: `${index * 100}ms`
               }}>
-                  <CardHeader className="pb-6">
-                    <div className={`w-20 h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-3xl text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
+                  <CardHeader className="pb-4 sm:pb-6 p-0">
+                    <div className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r ${point.gradient} rounded-3xl flex items-center justify-center text-2xl sm:text-3xl text-white mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
                       <point.icon />
                     </div>
-                    <CardTitle className="text-2xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
+                    <CardTitle className="text-xl sm:text-2xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
                       {point.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-lg leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  <CardContent className="p-0">
+                    <CardDescription className="text-base sm:text-lg leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                       {point.description}
                     </CardDescription>
                   </CardContent>
-                  
+
                   {/* Hover effect overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                 </Card>)}
@@ -351,25 +351,25 @@ const IndexPage = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-32 relative overflow-hidden bg-gradient-card">
+        <section id="testimonials" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-card">
           <ParallaxSection speed={0.2} className="absolute inset-0">
             <div className="absolute top-10 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" />
             <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float delay-1000" />
           </ParallaxSection>
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
                 Join the Conversation
               </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
                 Your feedback is valuable. Send a comment, a critique, or an idea for future collaborations.
               </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
+              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-4 sm:mt-6" />
             </div>
-            
-            <div className="text-center animate-fade-in-up delay-300">
-              <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-8 py-6 text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold">
+
+            <div className="text-center animate-fade-in-up delay-300 px-4">
+              <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-500 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg rounded-2xl group hover:scale-105 active:scale-95 font-semibold w-full sm:w-auto">
                 <a href={`mailto:${siteConfig.contactEmail}?subject=Feedback on Cognitive Intraspecific Selection Thesis`}>
                   <Mail className="w-5 h-5 mr-3 group-hover:animate-bounce" />
                   Share Your Feedback
@@ -380,44 +380,44 @@ const IndexPage = () => {
         </section>
 
         {/* Resources & Tools Section */}
-        <section id="resources" className="py-32 relative overflow-hidden">
+        <section id="resources" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="text-center mb-20 animate-fade-in-up">
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Research Resources
               </h2>
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
                 Tools and resources to support your academic work and research
               </p>
-              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-6" />
+              <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-4 sm:mt-6" />
             </div>
             
-            <div className="grid grid-cols-1 gap-12 max-w-4xl mx-auto mb-20">
+            <div className="grid grid-cols-1 gap-8 sm:gap-12 max-w-4xl mx-auto mb-12 sm:mb-16 lg:mb-20 px-4">
               <EnhancedCitation />
               <NewsletterSignup />
             </div>
-            
+
             {/* Additional Resources */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
-                <div className="w-16 h-16 bg-gradient-primary rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <BookOpen className="w-8 h-8 text-white" />
+            <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto px-4">
+              <Card className="glass p-6 sm:p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-primary rounded-3xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-lg sm:text-xl font-serif font-bold mb-3 sm:mb-4 group-hover:text-primary transition-colors">
                   Full Thesis
                 </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                   Complete academic thesis with comprehensive analysis and practical applications.
                 </p>
                 <div className="flex flex-col gap-3">
-                  <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300">
+                  <Button asChild className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300 text-sm sm:text-base">
                     <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
                       <Download className="w-4 h-4 mr-2" />
                       Download PDF
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300">
+                  <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300 text-sm sm:text-base">
                     <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener">
                       <FileText className="w-4 h-4 mr-2" />
                       Read Online
@@ -425,36 +425,36 @@ const IndexPage = () => {
                   </Button>
                 </div>
               </Card>
-              
-              <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
-                <div className="w-16 h-16 bg-gradient-accent rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <Users className="w-8 h-8 text-white" />
+
+              <Card className="glass p-6 sm:p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-accent rounded-3xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <Users className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-accent transition-colors">
+                <h3 className="text-lg sm:text-xl font-serif font-bold mb-3 sm:mb-4 group-hover:text-accent transition-colors">
                   Research Community
                 </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                   Join the growing community of researchers exploring cognitive selection in education.
                 </p>
-                <Button asChild variant="outline" className="w-full glass hover:bg-accent/5 transition-all duration-300">
+                <Button asChild variant="outline" className="w-full glass hover:bg-accent/5 transition-all duration-300 text-sm sm:text-base">
                   <a href={siteConfig.social.community} target="_blank" rel="noopener" className="flex items-center justify-center">
                     <Users className="w-4 h-4 mr-3" />
                     Join Community
                   </a>
                 </Button>
               </Card>
-              
-              <Card className="glass p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
-                <div className="w-16 h-16 bg-gradient-to-r from-success to-warning rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <ExternalLink className="w-8 h-8 text-white" />
+
+              <Card className="glass p-6 sm:p-8 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 group">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-success to-warning rounded-3xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                  <ExternalLink className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-serif font-bold mb-4 group-hover:text-foreground transition-colors">
+                <h3 className="text-lg sm:text-xl font-serif font-bold mb-3 sm:mb-4 group-hover:text-foreground transition-colors">
                   ORCID Profile
                 </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
                   Access the author's complete academic profile and additional research publications.
                 </p>
-                <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300">
+                <Button asChild variant="outline" className="w-full glass hover:bg-primary/5 transition-all duration-300 text-sm sm:text-base">
                   <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Profile
@@ -467,44 +467,44 @@ const IndexPage = () => {
       </main>
 
         {/* Contact & Footer */}
-        <footer className="py-20 bg-gradient-to-br from-muted/10 to-background border-t">
+        <footer className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-muted/10 to-background border-t">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-8">
-            <div className="flex items-center justify-center gap-4 mb-8">
-            <img src={logoFull} alt="Pyragogy.org" className="h-12 w-auto" />
-                <span className="text-2xl font-serif font-bold">Pyragogy Research</span>
+            <div className="text-center space-y-6 sm:space-y-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <img src={logoFull} alt="Pyragogy.org" className="h-10 sm:h-12 w-auto" />
+                <span className="text-xl sm:text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
-              
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">Advancing educational theory through research in cognitive selection and collective intelligence building.</p>
-              
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+
+              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">Advancing educational theory through research in cognitive selection and collective intelligence building.</p>
+
+              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 px-4">
+                <Button asChild variant="outline" className="glass hover:bg-primary/5 text-sm sm:text-base w-full sm:w-auto">
                   <a href={`https://orcid.org/${siteConfig.orcid}`} target="_blank" rel="noopener">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     ORCID Profile
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+                <Button asChild variant="outline" className="glass hover:bg-primary/5 text-sm sm:text-base w-full sm:w-auto">
                   <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener" download>
                     <Download className="w-4 h-4 mr-2" />
                     Download Thesis
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+                <Button asChild variant="outline" className="glass hover:bg-primary/5 text-sm sm:text-base w-full sm:w-auto">
                   <a href={siteConfig.thesisPdfUrl} target="_blank" rel="noopener">
                     <FileText className="w-4 h-4 mr-2" />
                     Read Online
                   </a>
                 </Button>
-                <Button asChild variant="outline" className="glass hover:bg-primary/5">
+                <Button asChild variant="outline" className="glass hover:bg-primary/5 text-sm sm:text-base w-full sm:w-auto">
                   <a href={`mailto:${siteConfig.contactEmail}`}>
                     <Mail className="w-4 h-4 mr-2" />
                     Contact Us
                   </a>
                 </Button>
               </div>
-              
-              <div className="pt-8 border-t border-muted text-sm text-muted-foreground">
+
+              <div className="pt-6 sm:pt-8 border-t border-muted text-xs sm:text-sm text-muted-foreground px-4">
                 <p>© {siteConfig.publicationYear} {siteConfig.author}. Published under Creative Commons Attribution 4.0 International License.</p>
               </div>
             </div>
