@@ -43,7 +43,6 @@ const defaultCitationData: CitationData = {
   year: '2025',
   publisher: 'Pyragogy Research Initiative',
   url: 'https://docs.pyragogy.org/core/why/',
-  accessDate: new Date().toISOString().split('T')[0],
   doi: '10.5281/zenodo.placeholder'
 };
 
@@ -159,8 +158,8 @@ export const EnhancedCitation = () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedStyles(prev => new Set([...prev, style]));
-      toast("Citation Copied!", {
-        description: `${citationStyles.find(s => s.code === style)?.name} citation copied to clipboard.`
+      toast({
+        title: "Citation Copied!", description: `${citationStyles.find(s => s.code === style)?.name} citation copied to clipboard.`
       });
       
       setTimeout(() => {
@@ -187,7 +186,8 @@ export const EnhancedCitation = () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    toast("Citation Downloaded!", {
+    toast({
+      title: "Citation Downloaded!",
       description: `${style.name} citation saved as text file.`
     });
   };
@@ -215,22 +215,22 @@ export const EnhancedCitation = () => {
   return (
     <Card className="glass shadow-strong hover:shadow-glow transition-all duration-500">
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <CardTitle className="flex items-center gap-2 text-xl font-serif">
               <BookOpen className="w-5 h-5 text-primary" />
               Enhanced Citation Generator
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="mt-1">
               Generate citations in 10+ academic formats with customization options
             </CardDescription>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button
               variant="outline"
               size="sm"
               onClick={() => setIsCustomizing(!isCustomizing)}
-              className="flex items-center gap-2"
+              className="flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <User className="w-4 h-4" />
               {isCustomizing ? 'Hide' : 'Customize'}
@@ -239,7 +239,7 @@ export const EnhancedCitation = () => {
               variant="outline"
               size="sm"
               onClick={downloadAllCitations}
-              className="flex items-center gap-2"
+              className="flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <Download className="w-4 h-4" />
               Download All
@@ -338,7 +338,7 @@ export const EnhancedCitation = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="bg-background/50 p-4 rounded-lg border border-border/30 mb-4">
-                      <pre className="text-sm whitespace-pre-wrap font-mono">
+                      <pre className="text-sm whitespace-pre-wrap font-mono break-words">
                         {style.format(citationData)}
                       </pre>
                     </div>
@@ -395,7 +395,7 @@ export const EnhancedCitation = () => {
                                   {style.description}
                                 </span>
                               </div>
-                              <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono">
+                              <pre className="text-xs text-muted-foreground whitespace-pre-wrap font-mono break-words">
                                 {style.format(citationData)}
                               </pre>
                             </div>

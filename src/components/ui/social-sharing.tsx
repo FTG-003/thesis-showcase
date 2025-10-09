@@ -91,172 +91,168 @@ export const SocialSharing = ({
           Share Research
         </Button>
       </DialogTrigger>
-      
-      <DialogContent className="max-w-2xl glass border-border/50">
+
+      <DialogContent className="max-w-3xl glass border-border/50">
         <DialogHeader>
           <DialogTitle className="text-xl font-serif">Share This Research</DialogTitle>
         </DialogHeader>
-        
-        <div className="space-y-6">
-          {/* Quick Share Buttons */}
-          <div>
-            <h3 className="font-medium mb-3">Share on Social Media</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => openShare('twitter')}
-                className="flex items-center gap-2 bg-blue-500/10 hover:bg-blue-500/20 border-blue-500/30"
-              >
-                <Twitter className="w-4 h-4 text-blue-500" />
-                Twitter
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => openShare('linkedin')}
-                className="flex items-center gap-2 bg-blue-700/10 hover:bg-blue-700/20 border-blue-700/30"
-              >
-                <Linkedin className="w-4 h-4 text-blue-700" />
-                LinkedIn
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => openShare('facebook')}
-                className="flex items-center gap-2 bg-blue-600/10 hover:bg-blue-600/20 border-blue-600/30"
-              >
-                <Facebook className="w-4 h-4 text-blue-600" />
-                Facebook
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => openShare('email')}
-                className="flex items-center gap-2 bg-green-600/10 hover:bg-green-600/20 border-green-600/30"
-              >
-                <Mail className="w-4 h-4 text-green-600" />
-                Email
-              </Button>
-            </div>
-          </div>
 
-          {/* Direct Links */}
-          <div>
-            <h3 className="font-medium mb-3">Direct Links</h3>
-            <div className="space-y-3">
-              <Card className="p-3 bg-muted/30">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-muted-foreground mb-1">Full Thesis</p>
-                    <p className="text-sm font-mono truncate">{url}</p>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-6">
+            {/* Quick Share Buttons */}
+            <div>
+              <h3 className="font-medium mb-3">Share on Social Media</h3>
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openShare('twitter')}
+                  className="flex items-center justify-center gap-2 bg-blue-500/10 hover:bg-blue-500/20 border-blue-500/30"
+                >
+                  <Twitter className="w-4 h-4 text-blue-500" />
+                  Twitter
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openShare('linkedin')}
+                  className="flex items-center justify-center gap-2 bg-blue-700/10 hover:bg-blue-700/20 border-blue-700/30"
+                >
+                  <Linkedin className="w-4 h-4 text-blue-700" />
+                  LinkedIn
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openShare('facebook')}
+                  className="flex items-center justify-center gap-2 bg-blue-600/10 hover:bg-blue-600/20 border-blue-600/30"
+                >
+                  <Facebook className="w-4 h-4 text-blue-600" />
+                  Facebook
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openShare('email')}
+                  className="flex items-center justify-center gap-2 bg-green-600/10 hover:bg-green-600/20 border-green-600/30"
+                >
+                  <Mail className="w-4 h-4 text-green-600" />
+                  Email
+                </Button>
+              </div>
+            </div>
+
+            {/* QR Code */}
+            <div>
+              <h3 className="font-medium mb-3">QR Code</h3>
+              <Card className="p-4 bg-muted/30">
+                <div className="flex items-center gap-4">
+                  <div className="w-24 h-24 bg-white rounded-lg p-2 flex-shrink-0">
+                    <img 
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`}
+                      alt="QR Code for thesis"
+                      className="w-full h-full object-contain"
+                    />
                   </div>
+                  <div className="flex-1">
+                    <p className="text-sm text-muted-foreground mb-2">
+                      Scan to access on mobile devices
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Save or print this QR code to share the research offline
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Academic Citation */}
+            <div>
+              <h3 className="font-medium mb-3">Academic Citation (APA)</h3>
+              <Card className="p-4 bg-muted/30">
+                <div className="flex items-start justify-between gap-3">
+                  <p className="text-sm leading-relaxed font-serif flex-1">
+                    {generateCitation()}
+                  </p>
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => copyToClipboard(url, 'url')}
+                    onClick={() => copyToClipboard(generateCitation(), 'citation')}
                     className="flex-shrink-0"
                   >
-                    {copiedStates.url ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                    {copiedStates.citation ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                   </Button>
                 </div>
               </Card>
+            </div>
+          </div>
 
-              {/* Section-specific links */}
-              {['abstract', 'key-points', 'resources'].map((section) => (
-                <Card key={section} className="p-3 bg-muted/30">
+          <div className="space-y-6">
+            {/* Direct Links */}
+            <div>
+              <h3 className="font-medium mb-3">Direct Links</h3>
+              <div className="space-y-3">
+                <Card className="p-3 bg-muted/30">
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-muted-foreground mb-1 capitalize">
-                        {section.replace('-', ' ')} Section
-                      </p>
-                      <p className="text-sm font-mono truncate">
-                        {generateSectionLink(section)}
-                      </p>
+                      <p className="text-sm text-muted-foreground mb-1">Full Thesis</p>
+                      <p className="text-sm font-mono truncate">{url}</p>
                     </div>
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => copyToClipboard(generateSectionLink(section), section)}
+                      onClick={() => copyToClipboard(url, 'url')}
                       className="flex-shrink-0"
                     >
-                      {copiedStates[section] ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      {copiedStates.url ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                     </Button>
                   </div>
                 </Card>
-              ))}
+
+                {/* Section-specific links */}
+                {['abstract', 'key-points', 'resources'].map((section) => (
+                  <Card key={section} className="p-3 bg-muted/30">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm text-muted-foreground mb-1 capitalize">
+                          {section.replace('-', ' ')} Section
+                        </p>
+                        <p className="text-sm font-mono truncate">
+                          {generateSectionLink(section)}
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard(generateSectionLink(section), section)}
+                        className="flex-shrink-0"
+                      >
+                        {copiedStates[section] ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Academic Citation */}
-          <div>
-            <h3 className="font-medium mb-3">Academic Citation</h3>
-            <Card className="p-4 bg-muted/30">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm text-muted-foreground mb-2">APA Style</p>
-                  <p className="text-sm leading-relaxed font-serif">
-                    {generateCitation()}
-                  </p>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => copyToClipboard(generateCitation(), 'citation')}
-                  className="flex-shrink-0"
-                >
-                  {copiedStates.citation ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                </Button>
-              </div>
-            </Card>
-          </div>
-
-          {/* QR Code */}
-          <div>
-            <h3 className="font-medium mb-3">QR Code</h3>
-            <Card className="p-4 bg-muted/30">
-              <div className="flex items-center gap-4">
-                <div className="w-24 h-24 bg-white rounded-lg p-2">
-                  <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`}
-                    alt="QR Code for thesis"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Scan to access on mobile devices
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Save or print this QR code to share the research offline
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          {/* Hashtags */}
-          <div>
-            <h3 className="font-medium mb-3">Suggested Hashtags</h3>
-            <Card className="p-3 bg-muted/30">
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex-1">
-                  <p className="text-sm">
+            {/* Hashtags */}
+            <div>
+              <h3 className="font-medium mb-3">Suggested Hashtags</h3>
+              <Card className="p-3 bg-muted/30">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm flex-1">
                     #{hashtags.join(' #')}
                   </p>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => copyToClipboard(`#${hashtags.join(' #')}`, 'hashtags')}
+                  >
+                    {copiedStates.hashtags ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                  </Button>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => copyToClipboard(`#${hashtags.join(' #')}`, 'hashtags')}
-                >
-                  {copiedStates.hashtags ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                </Button>
-              </div>
-            </Card>
+              </Card>
+            </div>
           </div>
         </div>
       </DialogContent>

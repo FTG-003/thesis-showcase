@@ -144,7 +144,7 @@ const IndexPage = () => {
           </ParallaxSection>
           
           <div className="container mx-auto px-4 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center lg:text-left px-4 sm:px-0">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-reveal">{siteConfig.thesisTitle}</h1>
 
