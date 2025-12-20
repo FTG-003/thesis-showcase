@@ -8,7 +8,6 @@ import {
   Linkedin, 
   Facebook, 
   Mail, 
-  QrCode,
   Check 
 } from 'lucide-react';
 import { toast } from '@/components/ui/sonner';
@@ -62,12 +61,6 @@ export const SocialSharing = ({
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
     email: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${description}\n\n${url}`)}`
-  };
-
-  const generateQRCode = async () => {
-    // Generate QR code using a service or library
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
-    return qrCodeUrl;
   };
 
   const openShare = (platform: keyof typeof shareUrls) => {
@@ -140,30 +133,6 @@ export const SocialSharing = ({
                   Email
                 </Button>
               </div>
-            </div>
-
-            {/* QR Code */}
-            <div>
-              <h3 className="font-medium mb-3">QR Code</h3>
-              <Card className="p-4 bg-muted/30">
-                <div className="flex items-center gap-4">
-                  <div className="w-24 h-24 bg-white rounded-lg p-2 flex-shrink-0">
-                    <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`}
-                      alt="QR Code for thesis"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground mb-2">
-                      Scan to access on mobile devices
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      Save or print this QR code to share the research offline
-                    </p>
-                  </div>
-                </div>
-              </Card>
             </div>
 
             {/* Academic Citation */}
