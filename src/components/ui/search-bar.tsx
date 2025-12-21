@@ -21,7 +21,7 @@ const searchableContent = [
   {
     id: 'abstract-intro',
     title: 'Executive Summary Introduction',
-    content: 'This thesis presents a groundbreaking transposition of biological intraspecific selection to educational contexts, reimagining how ideas compete, evolve, and strengthen collective intelligence.',
+    content: 'This work explores how principles of biological intraspecific selection can be transposed to learning contexts, reframing how ideas compete, evolve, and strengthen collective intelligence.',
     section: 'abstract'
   },
   {

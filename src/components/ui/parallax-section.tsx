@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface ParallaxSectionProps {
   children: React.ReactNode;
@@ -7,41 +7,52 @@ interface ParallaxSectionProps {
 }
 
 export const ParallaxSection = ({ children, speed = 0.5, className = '' }: ParallaxSectionProps) => {
-  const [offsetY, setOffsetY] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let animationFrameId: number;
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotionQuery.matches) {
+      return undefined;
+    }
 
-    const handleScroll = () => {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = requestAnimationFrame(() => {
-        if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          const scrolled = window.scrollY;
-          const rate = scrolled * -speed;
-
-          // Only apply parallax when element is in viewport
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            setOffsetY(rate);
-          }
-        }
-      });
+    let animationFrameId = 0;
+    const updatePosition = () => {
+      animationFrameId = 0;
+      if (!containerRef.current || !innerRef.current) {
+        return;
+      }
+      const rect = containerRef.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const rate = window.scrollY * -speed;
+        innerRef.current.style.transform = `translate3d(0, ${rate}px, 0)`;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (animationFrameId) {
+        return;
+      }
+      animationFrameId = window.requestAnimationFrame(updatePosition);
+    };
+
+    updatePosition();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [speed]);
 
   return (
-    <div ref={ref} className={className}>
-      <div 
-        style={{ 
-          transform: `translateY(${offsetY}px)`,
-          transition: 'transform 0.1s ease-out'
+    <div ref={containerRef} className={className}>
+      <div
+        ref={innerRef}
+        style={{
+          transform: 'translate3d(0, 0, 0)',
+          willChange: 'transform'
         }}
       >
         {children}

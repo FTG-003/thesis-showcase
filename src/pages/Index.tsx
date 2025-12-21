@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { siteConfig, keyPoints as keyPointsData } from '@/components/ui/content';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { NewsletterSignup } from "@/components/ui/newsletter-signup";
@@ -13,9 +12,9 @@ import { Testimonials } from "@/components/ui/testimonials";
 import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { SocialSharing } from "@/components/ui/social-sharing";
-import { GlossaryTooltip, GlossaryText } from "@/components/ui/glossary-tooltip";
+import { GlossaryTooltip } from "@/components/ui/glossary-tooltip";
 import { Download, ExternalLink, BookOpen, Users, Menu, Mail, FileText } from 'lucide-react';
-import { toast } from '@/components/ui/sonner';
+import { toast } from '@/components/ui/sonner-toast';
 import logoFull from '/logo-full.png';
 
 const IndexPage = () => {
@@ -79,7 +78,7 @@ const IndexPage = () => {
       <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-md border-b shadow-lg z-40 transition-all duration-300">
         <nav className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 group">
-        <img src={logoFull} alt="Pyragogy.org" className="h-8 sm:h-10 w-auto transition-all duration-300 group-hover:scale-105" />
+        <img src={logoFull} alt="Pyragogy.org" decoding="async" className="h-8 sm:h-10 w-auto transition-all duration-300 group-hover:scale-105" />
             <span className="text-base sm:text-lg font-serif font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Pyragogy Research
             </span>
@@ -135,7 +134,7 @@ const IndexPage = () => {
 
       <main id="main" className="pt-16">
         {/* Hero Section */}
-        <section className="relative pt-8 sm:pt-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-hero">
+        <section className="relative pt-8 sm:pt-10 pb-16 sm:pb-20 overflow-hidden bg-gradient-hero" aria-labelledby="hero-title">
           {/* Animated background elements */}
           <ParallaxSection speed={0.3} className="absolute inset-0 mx-0">
             <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-float" />
@@ -146,7 +145,7 @@ const IndexPage = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center lg:text-left px-4 sm:px-0">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-reveal">{siteConfig.thesisTitle}</h1>
+                <h1 id="hero-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-reveal">{siteConfig.thesisTitle}</h1>
 
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-serif font-light tracking-wide">From Individualism to Collective Strength —
                   <span className="block">
@@ -185,7 +184,7 @@ const IndexPage = () => {
                       {/* Logo e Header */}
                       <div className="space-y-6">
                         <div className="flex items-center justify-center mb-2">
-                          <img src={logoFull} alt="Pyragogy.org" className="h-12 sm:h-16 w-auto filter brightness-0 invert" />
+                          <img src={logoFull} alt="Pyragogy.org" decoding="async" className="h-12 sm:h-16 w-auto filter brightness-0 invert" />
                         </div>
 
                         <div className="text-center space-y-4">
@@ -227,11 +226,11 @@ const IndexPage = () => {
         </section>
 
         {/* Abstract Section */}
-        <section id="abstract" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+        <section id="abstract" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" aria-labelledby="abstract-title">
           <div className="absolute inset-0 bg-gradient-card" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 id="abstract-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Executive Summary
               </h2>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full" />
@@ -240,8 +239,8 @@ const IndexPage = () => {
             <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8 px-4">
                 <Card className="glass p-6 sm:p-8 lg:p-10 rounded-3xl shadow-strong hover:shadow-glow transition-all duration-500 animate-scale-in">
                   <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-serif font-medium text-center leading-relaxed text-primary mb-6 sm:mb-8">
-                    This thesis presents a groundbreaking transposition of biological <GlossaryTooltip term="intraspecific selection">intraspecific selection</GlossaryTooltip> to educational contexts,
-                    reimagining how ideas compete, evolve, and strengthen <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip>.
+                    This work explores how principles of biological <GlossaryTooltip term="intraspecific selection">intraspecific selection</GlossaryTooltip> can be transposed to learning contexts,
+                    reframing how ideas compete, evolve, and strengthen <GlossaryTooltip term="collective intelligence">collective intelligence</GlossaryTooltip>.
                   </p>
                 </Card>
 
@@ -295,11 +294,11 @@ const IndexPage = () => {
         </section>
 
         {/* Timeline Section */}
-        <section id="timeline" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+        <section id="timeline" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" aria-labelledby="timeline-title">
           <div className="absolute inset-0 bg-gradient-to-br from-background to-muted/20" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
+              <h2 id="timeline-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
                 Research Journey
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
@@ -312,11 +311,11 @@ const IndexPage = () => {
         </section>
 
         {/* Key Points Section */}
-        <section id="key-points" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+        <section id="key-points" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" aria-labelledby="key-points-title">
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 id="key-points-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Key Contributions
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
@@ -351,7 +350,7 @@ const IndexPage = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-card">
+        <section id="testimonials" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-card" aria-labelledby="testimonials-title">
           <ParallaxSection speed={0.2} className="absolute inset-0">
             <div className="absolute top-10 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" />
             <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float delay-1000" />
@@ -359,7 +358,7 @@ const IndexPage = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
+              <h2 id="testimonials-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
                 Join the Conversation
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
@@ -380,11 +379,11 @@ const IndexPage = () => {
         </section>
 
         {/* Resources & Tools Section */}
-        <section id="resources" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
+        <section id="resources" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" aria-labelledby="resources-title">
           <div className="absolute inset-0 bg-gradient-to-br from-muted/30 to-background" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h2 id="resources-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Research Resources
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
@@ -471,7 +470,7 @@ const IndexPage = () => {
           <div className="container mx-auto px-4">
             <div className="text-center space-y-6 sm:space-y-8">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <img src={logoFull} alt="Pyragogy.org" className="h-10 sm:h-12 w-auto" />
+            <img src={logoFull} alt="Pyragogy.org" loading="lazy" decoding="async" className="h-10 sm:h-12 w-auto" />
                 <span className="text-xl sm:text-2xl font-serif font-bold">Pyragogy Research</span>
               </div>
 
