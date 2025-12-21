@@ -194,7 +194,7 @@ const IndexPage = () => {
                           </h2>
                           <div className="w-20 h-0.5 bg-white/30 mx-auto rounded-full" />
                           <p className="text-xs sm:text-sm text-white/80 uppercase tracking-wider font-medium">
-                            Academic Thesis
+                            A Personal Conceptual Work
                           </p>
                         </div>
                       </div>
