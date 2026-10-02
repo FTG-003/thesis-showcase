@@ -23,7 +23,7 @@ interface SocialSharingProps {
 
 export const SocialSharing = ({ 
   title = "Cognitive Intraspecific Selection in Education",
-  description = "A groundbreaking thesis exploring evolutionary approaches to educational development and collective intelligence building.",
+  description = "A conceptual thesis exploring how intraspecific selection can be transposed from biology to educational systems and collective intelligence.",
   url = typeof window !== 'undefined' ? window.location.href : '',
   hashtags = ["CognitiveSelection", "Education", "Pyragogy", "CollectiveIntelligence", "AcademicResearch"],
   className = ""
@@ -68,8 +68,7 @@ export const SocialSharing = ({
   };
 
   const generateCitation = () => {
-    const currentYear = new Date().getFullYear();
-    return `Terzi, F. (${currentYear}). Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength — A Framework for Educational Evolution. Pyragogy Research Initiative. Retrieved from ${url}`;
+    return `Terzi, F. (2025). Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength — A Framework for Educational Evolution. Pyragogy Research Initiative. Retrieved from ${url}`;
   };
 
   const generateSectionLink = (sectionId: string) => {
