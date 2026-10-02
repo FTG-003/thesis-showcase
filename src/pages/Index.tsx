@@ -5,16 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { NewsletterSignup } from "@/components/ui/newsletter-signup";
 import { EnhancedCitation } from "@/components/ui/enhanced-citation";
 import { ParallaxSection } from "@/components/ui/parallax-section";
-import { Testimonials } from "@/components/ui/testimonials";
 import { Timeline } from "@/components/ui/timeline";
 import { SearchBar } from "@/components/ui/search-bar";
 import { SocialSharing } from "@/components/ui/social-sharing";
 import { GlossaryTooltip } from "@/components/ui/glossary-tooltip";
 import { Download, ExternalLink, BookOpen, Users, Menu, Mail, FileText } from 'lucide-react';
-import { toast } from '@/components/ui/sonner-toast';
 import logoFull from '/logo-full.png';
 
 const IndexPage = () => {
@@ -22,7 +19,7 @@ const IndexPage = () => {
     { id: 'abstract', label: 'Abstract' },
     { id: 'timeline', label: 'Timeline' },
     { id: 'key-points', label: 'Key Points' },
-    { id: 'testimonials', label: 'Join' },
+    { id: 'discussion', label: 'Discuss' },
     { id: 'resources', label: 'Resources' },
   ];
 
@@ -51,18 +48,6 @@ const IndexPage = () => {
         top: offsetTop,
         behavior: 'smooth'
       });
-    }
-  };
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      toast.success("Link Copied!", {
-        description: "The research link has been copied to your clipboard.",
-      })
-    } catch {
-      toast.error("Copy Failed", {
-        description: "Unable to copy to clipboard.",
-      })
     }
   };
   return <>
@@ -302,7 +287,7 @@ const IndexPage = () => {
                 Research Journey
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-                The evolution of revolutionary educational theory from concept to implementation
+                The development of the conceptual framework from initial hypothesis to public research artifact
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-4 sm:mt-6" />
             </div>
@@ -319,7 +304,7 @@ const IndexPage = () => {
                 Key Contributions
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
-                Revolutionary insights that transform how we understand educational evolution and collective intelligence
+                Core propositions of the framework, presented as concepts to examine, test, critique, and refine
               </p>
               <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full mt-4 sm:mt-6" />
             </div>
@@ -349,8 +334,8 @@ const IndexPage = () => {
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-card" aria-labelledby="testimonials-title">
+        {/* Discussion Section */}
+        <section id="discussion" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden bg-gradient-card" aria-labelledby="discussion-title">
           <ParallaxSection speed={0.2} className="absolute inset-0">
             <div className="absolute top-10 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" />
             <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float delay-1000" />
@@ -358,7 +343,7 @@ const IndexPage = () => {
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-12 sm:mb-16 lg:mb-20 animate-fade-in-up">
-              <h2 id="testimonials-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
+              <h2 id="discussion-title" className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent py-2">
                 Join the Conversation
               </h2>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
@@ -394,7 +379,6 @@ const IndexPage = () => {
             
             <div className="grid grid-cols-1 gap-8 sm:gap-12 max-w-4xl mx-auto mb-12 sm:mb-16 lg:mb-20 px-4">
               <EnhancedCitation />
-              <NewsletterSignup />
             </div>
 
             {/* Additional Resources */}
