@@ -46,17 +46,15 @@ const propositions = [
 ];
 
 const falsifiers = [
-  "If idea-level competition still reproduces interpersonal status competition, the central separation fails in practice.",
-  "If structured conflict increases conformity, polarization or performance anxiety, the mechanism is counterproductive.",
-  "If EQI-style metrics reward what is easy to count rather than what improves learning, measurement corrupts the target.",
-  "If AI mediation narrows the search space or systematically privileges plausible consensus, collective intelligence can become collective error.",
+  "If idea-level competition simply recreates status competition between people, the central separation fails.",
+  "If structured conflict increases conformity or anxiety, the mechanism is counterproductive.",
+  "If AI mediation narrows the search space, collective intelligence can become collective error.",
 ];
 
 const openQuestions = [
-  "What observable evidence would distinguish genuine collective learning from polished group consensus?",
-  "Which parts of the biological analogy are explanatory, and where does the analogy break?",
-  "How should retained ideas carry provenance, counter-evidence and boundary conditions?",
-  "Can an educational system preserve productive friction without rewarding dominance?",
+  "How do we distinguish genuine collective learning from polished consensus?",
+  "Where does the biological analogy stop being useful?",
+  "Can productive friction exist without rewarding dominance?",
 ];
 
 function IndexPage() {
@@ -123,7 +121,8 @@ function IndexPage() {
             <h1 id="hero-title">What if competition stopped selecting <em>students</em> and started selecting <em>ideas</em>?</h1>
 
             <p className="hero-lede">
-              <strong>Cognitive Intraspecific Selection in Education</strong> is a conceptual framework by Fabrizio Terzi that explores whether variation, selection, retention and adaptation can operate on ideas while learners remain collaborators in a shared cognitive system.
+              <strong>Cognitive Intraspecific Selection in Education</strong> explores a simple shift:
+              learners collaborate while ideas face variation, critique and selection.
             </p>
 
             <div className="hero-actions">
@@ -143,7 +142,7 @@ function IndexPage() {
             <div className="card-index">THESIS / 001</div>
             <div className="thesis-mark"><span>IDEA</span><div className="selection-axis"><i /><i /><i /><i /></div><span>FIT</span></div>
             <div><p className="kicker">THE PROPOSED SHIFT</p><p className="big-statement">People cooperate.<br />Ideas compete.</p></div>
-            <p className="card-note">Not a claim of biological equivalence. A deliberately testable transposition intended to expose useful mechanisms—and its own failure points.</p>
+            <p className="card-note">A testable conceptual transposition—not a claim of biological equivalence.</p>
             <ArrowDown className="card-arrow" />
           </aside>
         </section>
@@ -154,9 +153,8 @@ function IndexPage() {
 
           <div className="premise-layout">
             <div className="prose">
-              <p className="lead">Traditional educational competition often binds performance to the person: grades, ranking, prestige and access accumulate around individuals.</p>
-              <p>This work asks whether part of that competitive pressure can be displaced onto the cognitive objects produced by a group—ideas, explanations, strategies, models and hypotheses.</p>
-              <p>The biological language is used as a conceptual instrument, not as proof. The value of the framework depends on whether the transposition produces better questions, better designs and eventually better evidence.</p>
+              <p className="lead">Education often binds competition to the person: grades, ranking, prestige and access accumulate around individuals.</p>
+              <p>This work asks what changes when part of that pressure is moved onto ideas, explanations, strategies and models instead.</p>
             </div>
 
             <div className="before-after" aria-label="Conceptual shift">
@@ -181,7 +179,7 @@ function IndexPage() {
           <div className="section-number">02</div>
           <div className="section-heading light">
             <p className="kicker">THE MECHANISM</p><h2>A four-stage loop for idea evolution.</h2>
-            <p className="section-intro">The framework maps four evolutionary operations onto an epistemic process. The analogy is useful only where the mapping remains explicit and criticisable.</p>
+            <p className="section-intro">Four evolutionary operations are mapped onto an epistemic process. The analogy remains useful only while it stays explicit and criticisable.</p>
           </div>
 
           <div className="loop-grid">
@@ -193,14 +191,14 @@ function IndexPage() {
             ))}
           </div>
 
-          <div className="mechanism-note"><ShieldCheck /><p><strong>Epistemic constraint:</strong> survival inside the learning system is not evidence of truth. A retained idea still needs provenance, independent evidence, known boundary conditions and a route to falsification.</p></div>
+          <div className="mechanism-note"><ShieldCheck /><p><strong>Epistemic constraint:</strong> survival is not truth. Retained ideas still need evidence, provenance and a route to falsification.</p></div>
         </section>
 
         <section id="claims" className="section">
           <div className="section-number">03</div>
           <div className="section-heading">
             <p className="kicker">CORE PROPOSITIONS</p><h2>Four claims the framework puts on the table.</h2>
-            <p className="section-intro">These are propositions to inspect and operationalize—not conclusions protected by the language of a finished theory.</p>
+            <p className="section-intro">Propositions to inspect and test—not conclusions protected by the language of a finished theory.</p>
           </div>
 
           <div className="proposition-grid">
@@ -216,7 +214,7 @@ function IndexPage() {
           <div className="section-number">04</div>
           <div className="section-heading">
             <p className="kicker">WHERE IT CAN BREAK</p><h2>A framework becomes research when it can lose.</h2>
-            <p className="section-intro">The thesis is more useful when its failure modes are visible. These are candidate falsifiers and boundary conditions, not defensive footnotes.</p>
+            <p className="section-intro">The framework is useful only if its failure modes stay visible.</p>
           </div>
 
           <div className="limits-grid">
@@ -225,7 +223,7 @@ function IndexPage() {
             </div>
 
             <aside className="open-questions">
-              <div className="open-icon"><Sparkles /></div><p className="kicker">OPEN QUESTIONS</p><h3>What still needs to be earned by evidence?</h3>
+              <div className="open-icon"><Sparkles /></div><p className="kicker">OPEN QUESTIONS</p><h3>What still needs evidence?</h3>
               <ol>{openQuestions.map((question) => <li key={question}>{question}</li>)}</ol>
             </aside>
           </div>
@@ -237,16 +235,16 @@ function IndexPage() {
 
           <div className="resource-grid">
             <a className="resource resource-featured" href={thesisUrl} target="_blank" rel="noreferrer">
-              <div><FileText /><span>PRIMARY SOURCE</span></div><h3>Full thesis</h3><p>The complete conceptual work in PDF.</p><span className="resource-link">Open PDF <ArrowUpRight /></span>
+              <div><FileText /><span>PRIMARY SOURCE</span></div><h3>Full thesis</h3><p>Complete PDF.</p><span className="resource-link">Open PDF <ArrowUpRight /></span>
             </a>
             <a className="resource" href={repoUrl} target="_blank" rel="noreferrer">
-              <div><Github /><span>SOURCE</span></div><h3>GitHub repository</h3><p>Website source, machine-readable metadata and revision history.</p><span className="resource-link">Inspect repo <ArrowUpRight /></span>
+              <div><Github /><span>SOURCE</span></div><h3>GitHub repository</h3><p>Source and revision history.</p><span className="resource-link">Inspect repo <ArrowUpRight /></span>
             </a>
             <a className="resource" href="/llms.txt" target="_blank" rel="noreferrer">
-              <div><Brain /><span>GEO / AI</span></div><h3>llms.txt</h3><p>Canonical context, epistemic status and guidance for machine summaries.</p><span className="resource-link">Read context <ArrowUpRight /></span>
+              <div><Brain /><span>GEO / AI</span></div><h3>llms.txt</h3><p>Machine-readable context.</p><span className="resource-link">Read context <ArrowUpRight /></span>
             </a>
             <a className="resource" href={orcidUrl} target="_blank" rel="noreferrer">
-              <div><Network /><span>IDENTITY</span></div><h3>ORCID</h3><p>Persistent researcher identifier for Fabrizio Terzi.</p><span className="resource-link">View ORCID <ArrowUpRight /></span>
+              <div><Network /><span>IDENTITY</span></div><h3>ORCID</h3><p>Researcher identity.</p><span className="resource-link">View ORCID <ArrowUpRight /></span>
             </a>
           </div>
 
