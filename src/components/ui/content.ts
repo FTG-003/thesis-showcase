@@ -42,35 +42,21 @@ export const timelineItems = [
     title: "Pilot Implementation",
     description: "Launched IdeoEvo pilot project to test practical applications of the framework.",
     icon: Calendar,
-    status: "in-progress"
+    status: "completed"
   },
   {
     date: "September 2025",
     title: "Publication & Dissemination",
-    description: "Publishing findings and expanding the research community.",
+    description: "Published the thesis showcase and opened the framework to public reading and critique.",
     icon: BookOpen,
-    status: "upcoming"
-  }
-];
-
-export const testimonials = [
-  {
-    quote: "This work fundamentally challenges how we think about educational competition and collaboration.",
-    author: "Expert in Educational Psychology",
-    title: "Review from a leading academic journal",
-    rating: 5
+    status: "completed"
   },
   {
-    quote: "The framework offers a novel perspective on collective intelligence in learning environments.",
-    author: "Cognitive Science Researcher",
-    title: "Commentary from a research symposium",
-    rating: 5
-  },
-  {
-    quote: "The Pyragogy methodology presents a practical solution to a longstanding educational challenge.",
-    author: "Educational Innovation Analyst",
-    title: "Excerpt from a technology review",
-    rating: 5
+    date: "2026",
+    title: "Open Iteration",
+    description: "Connecting the thesis to the wider Pyragogy research program and refining its claims through evidence, critique, and adjacent experiments.",
+    icon: Users,
+    status: "in-progress"
   }
 ];
 
