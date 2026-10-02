@@ -42,8 +42,7 @@ const defaultCitationData: CitationData = {
   title: 'Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength — A Framework for Educational Evolution',
   year: '2025',
   publisher: 'Pyragogy Research Initiative',
-  url: 'https://docs.pyragogy.org/core/why/',
-  doi: '10.5281/zenodo.placeholder'
+  url: 'https://intraspecificselection.pyragogy.org/'
 };
 
 const citationStyles: CitationStyle[] = [
@@ -222,7 +221,7 @@ export const EnhancedCitation = () => {
               Enhanced Citation Generator
             </CardTitle>
             <CardDescription className="mt-1">
-              Generate citations in 10+ academic formats with customization options
+              Generate citation exports for the public research artifact
             </CardDescription>
           </div>
           <div className="flex flex-col sm:flex-row gap-2">
@@ -433,14 +432,10 @@ export const EnhancedCitation = () => {
         </Tabs>
 
         {/* Quick Stats */}
-        <div className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-border/30">
+        <div className="mt-6 grid grid-cols-2 gap-4 pt-4 border-t border-border/30">
           <div className="text-center">
             <div className="text-lg font-bold text-primary">{citationStyles.length}</div>
             <div className="text-xs text-muted-foreground">Citation Formats</div>
-          </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-accent">47</div>
-            <div className="text-xs text-muted-foreground">Recently Copied</div>
           </div>
           <div className="text-center">
             <div className="text-lg font-bold text-success">2025</div>
