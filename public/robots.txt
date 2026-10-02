@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Canonical sitemap
 Sitemap: https://intraspecificselection.pyragogy.org/sitemap.xml
+
+# Machine-readable research context
+# https://intraspecificselection.pyragogy.org/llms.txt
