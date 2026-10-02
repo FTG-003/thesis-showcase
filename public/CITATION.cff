@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use or discuss this conceptual research artifact, please cite it as below."
+title: "Cognitive Intraspecific Selection in Education: From Individualism to Collective Strength — A Framework for Educational Evolution"
+type: thesis
+authors:
+  - family-names: "Terzi"
+    given-names: "Fabrizio"
+    orcid: "https://orcid.org/0009-0004-7191-0455"
+year: 2025
+publisher: "Pyragogy Research Initiative"
+url: "https://intraspecificselection.pyragogy.org/"
+repository-code: "https://github.com/FTG-003/thesis-showcase"
+license: "CC-BY-4.0"
